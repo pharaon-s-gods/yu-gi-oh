@@ -1,0 +1,35 @@
+/* Estilos para el footer */
+footer {
+    background-color: #222; /* Color de fondo oscuro */
+    color: white; /* Color del texto blanco */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centra el texto */
+    font-size: 14px; /* Tamaño de la fuente */
+}
+
+/* Contenedor del footer */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten */
+    justify-content: center; /* Centra los elementos */
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Centra el contenedor */
+}
+
+/* Sección del footer */
+.footer-section {
+    flex: 1; /* Hace que cada sección ocupe el mismo espacio */
+    margin: 10px; /* Espacio alrededor de las secciones */
+    min-width: 200px; /* Ancho mínimo de las secciones */
+}
+
+/* Estilo de los enlaces del footer */
+.footer-section a {
+    color: #1e90ff; /* Color azul de los enlaces */
+    text-decoration: none; /* Quita el subrayado */
+}
+
+/* Estilo de los enlaces del footer en hover */
+.footer-section a:hover {
+    text-decoration: underline; /* Subraya el enlace en hover */
+}
