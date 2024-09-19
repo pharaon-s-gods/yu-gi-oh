@@ -1,4 +1,4 @@
-export async function clickCartaMobil(url)
+export async function clickCartaMobil(id, url)
 {
     return  `
             <div class="overlay">

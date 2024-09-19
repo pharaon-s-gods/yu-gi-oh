@@ -1,8 +1,14 @@
-export async function carta()
+export async function carta(id, url)
 {
     return  `
-            <div class="img">
-                <img class="img carta" src="https://images.ygoprodeck.com/images/cards/34541863.jpg" alt="carta_api">
+            <div>
+                <div class="img" id="${id}">
+                    <img class="carta" src="${url}" alt="carta_api">
+                    </div>
+                <div class="button-container">
+                    <button class="btn-buy">Comprar</button>
+                    <button class="btn-cart">Agregar al carrito</button>
+                </div>
             </div>
             `
 }    

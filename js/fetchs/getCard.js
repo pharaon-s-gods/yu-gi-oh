@@ -1,4 +1,4 @@
-export async function getAll(){
+export async function getCard(offset, limit){
     const config = {
         method: 'GET',
         headers: {
@@ -9,7 +9,7 @@ export async function getAll(){
     {
         const response = await fetch
         (
-            `https://db.ygoprodeck.com/api/v7/cardinfo.php`, config
+            `https://db.ygoprodeck.com/api/v7/cardinfo.php?offset=${offset}&num=${limit}`, config
         );
         return response;
     }
