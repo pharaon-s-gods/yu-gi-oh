@@ -1,0 +1,28 @@
+/* Estilo para el contenedor principal */
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo para la información de contacto */
+.contact-info {
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* Estilo para el mapa */
+.map-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.map-container iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    border: 2px solid #333;
+}
