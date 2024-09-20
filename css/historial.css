@@ -1,0 +1,26 @@
+body {
+    background-color: #f4f4f4; /* Fondo suave */
+}
+
+.main {
+    padding: 20px;
+    text-align: center;
+}
+
+.cartas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.carta {
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.pagination {
+    margin-top: 20px;
+}
