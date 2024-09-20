@@ -5,62 +5,59 @@ import { getCard } from "../fetchs/getCard.js";
 import { footer } from "../mapeos/footer.js";
 import { header } from "../mapeos/header.js";
 import { paginas } from "../mapeos/paginas.js";
-
-// let offset = 0;
-// let limit = 10;
-// let isOverlayActive = false;
-
+import { getAll } from "../fetchs/getAll.js";
 
 // Función para extraer parámetros de la URL
 function getParamsFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
-    let offset = urlParams.get('offset') || 0;
-    let limit = urlParams.get('limit') || 10;
-    // Convertir a enteros para su uso posterior
-    offset = parseInt(offset);
-    limit = parseInt(limit);
-    // Filtrar otros parámetros (si es necesario)
+    let offset = parseInt(urlParams.get('offset') || 0);
+    let limit = parseInt(urlParams.get('limit') || 10);
+
     let filters = {};
     urlParams.forEach((value, key) => {
-        if (key !== 'offset' && key !== 'num') {
+        if (key !== 'offset' && key !== 'limit') {
             filters[key] = value;
         }
     });
+
     return { offset, limit, filters };
 }
 
+// Función para cargar header y footer
+function loadHeaderAndFooter() {
+    header().then(html => $('header').append(html));
+    footer().then(html => $('footer').append(html));
+}
 
+// Función para obtener la cantidad total de páginas
+function calculatePages() {
+    return getAll().then(response => 
+        response.json().then(data => {
+            let totalCards = data.data.length;
+            let aux = totalCards % 10;
+            return (totalCards - aux) / 10; // Total de páginas
+        })
+    );
+}
 
-$(document).ready(function() {
-    $(document).off("click", ".img");
-    header().then( html => {
-        $('header').append(html);
-    });
-    // home().then(html => {
-    //     $('#main').append(html);
-    // });
-    footer().then( html => {
-        $('footer').append(html);
-    });
-
-    // Obtener los parámetros de la URL
-    let { offset, limit, filters } = getParamsFromUrl();
-    let pag = (offset / 10) + 1;
-    let isOverlayActive = false;
-
+// Función para mapear las cartas y paginación
+function displayCardsAndPagination(offset, limit, pag) {
     getCard(offset, limit).then(response => {
         if (response.ok) {
             response.json().then(data => {
-                //mapeo las cartas
-                for (let i = 0; i < 10; i++) {
-                    carta(data.data[i].id, data.data[i].card_images[0].image_url).then(html => {
+                // Mapeo de las cartas
+                data.data.forEach(card => {
+                    carta(card.id, card.card_images[0].image_url).then(html => {
                         $('#main').append(html);
                     });
-                }
-                paginas(pag).then(html => {
-                    console.log(html);
-                    $('#main').append(html);
-                })
+                });
+
+                // Cargar la paginación
+                calculatePages().then(resultado => {
+                    paginas(pag, resultado).then(html => {
+                        $('#main').append(html);
+                    });
+                });
             });
         } else {
             console.error('Error fetching data:', response.statusText);
@@ -68,37 +65,55 @@ $(document).ready(function() {
     }).catch(error => {
         console.error('Error fetching data:', error);
     });
+}
 
-
-    // Registrar el nuevo manejador de eventos para .img
+// Función para manejar el click de las imágenes
+function handleImageClick() {
     $(document).on("click", ".img", function(e) {
-        if (isOverlayActive) 
-            return; // No hacer nada si el overlay está activo
         e.stopPropagation(); // Detener la propagación del evento
-        var srcImagen = $(this).find("img.carta").attr("src");
-        var id = $(this).parent().attr("id");
+        if (isOverlayActive) return; // No hacer nada si el overlay está activo
+
+        let srcImagen = $(this).find("img.carta").attr("src");
+        let id = $(this).parent().attr("id");
+
         // Activar el estado de overlay
         isOverlayActive = true;
         clickCartaMobil(id, srcImagen).then(html => {
             $('#main').append(html);
         });
     });
+}
 
-    
-    // Manejar el clic fuera del overlay
+// Función para cerrar el overlay al hacer clic fuera
+function handleOverlayClick() {
     $(document).on("mouseup", function(e) {
         if (isOverlayActive) {
-            var container = $(".elemento"); // El div interno que no debe cerrar si el clic fue fuera del div .elemento
+            let container = $(".elemento"); // El div interno del overlay
             if (!container.is(e.target) && container.has(e.target).length === 0) {
-                $(".overlay").remove(); // Elimina el overlay y su contenido
-                // Desactivar el estado de overlay
-                isOverlayActive = false;
+                $(".overlay").remove(); // Eliminar el overlay
+                isOverlayActive = false; // Desactivar el estado de overlay
             }
         }
     });
+}
 
+// Función principal para inicializar la página
+function initPage() {
+    const { offset, limit, filters } = getParamsFromUrl();
+    const pag = (offset / 10) + 1;
+    
+    loadHeaderAndFooter(); // Cargar el header y footer
+    displayCardsAndPagination(offset, limit, pag); // Mostrar cartas y paginación
+    handleImageClick(); // Manejar clicks en las imágenes
+    handleOverlayClick(); // Manejar cierre del overlay
+}
 
+// Variable global para manejar el overlay
+let isOverlayActive = false;
+
+// Inicializar la página cuando el documento esté listo
+$(document).ready(function() {
+    initPage();
 });
-
 
 
