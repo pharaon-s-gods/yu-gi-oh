@@ -6,7 +6,7 @@ export async function clickCartaMobil(elemento)
                     <img src="../../img/shareIcon.png" alt="Compartir">
                 </a>
                 <div class="elemento">
-                    <img class="img" src="${elemento.card_images[0].image_url}" alt="carta_api">
+                    <img class="imgOverlay" src="${elemento.card_images[0].image_url}" alt="carta_api">
                 </div>
                 <div class="detalle">
                     <div class="tituloDetalle">

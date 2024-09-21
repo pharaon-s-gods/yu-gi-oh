@@ -1,4 +1,3 @@
-import { home } from "../mapeos/home.js";
 import { clickCartaMobil } from "../mapeos/clickCartaMobil.js";
 import { carta } from "../mapeos/carta.js";
 import { getCard } from "../fetchs/getCard.js";
@@ -112,12 +111,28 @@ function handleOverlayClick() {
     });
 }
 
+function agregarCarrito() {
+    $(document).on("click", ".btn-cart", function(e) {
+        e.stopPropagation(); // Detener la propagación del evento  
+        let idOculto = $(this).data("info");
+        let storedIds = JSON.parse(localStorage.getItem('carritoIds')) || []; // Recuperar o inicializar el array de IDs
+        // Si el ID ya existe, removerlo del array
+        if (storedIds.includes(idOculto)) {
+            storedIds = storedIds.filter(id => id !== idOculto);
+        }
+        storedIds.push(idOculto);                                                // Agregar el ID al final del array
+        //storedIds.unshift(idOculto);                                           //Agregar el ID al principio del array
+        localStorage.setItem('carritoIds', JSON.stringify(storedIds));    // Guardar el array actualizado en localStorage
+    });
+}
+
 // Función principal para inicializar la página
 function initPage() {
     const { offset, limit, filters } = getParamsFromUrl();
     const pag = (offset / 10) + 1;
     
     loadHeaderAndFooter(); // Cargar el header y footer
+    agregarCarrito();
     displayCardsAndPagination(offset, limit, pag); // Mostrar cartas y paginación
     handleImageClick(); // Manejar clicks en las imágenes
     handleOverlayClick(); // Manejar cierre del overlay
