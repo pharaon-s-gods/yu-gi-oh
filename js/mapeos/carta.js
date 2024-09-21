@@ -1,10 +1,10 @@
-export async function carta(id, url)
+export async function carta(elemento)
 {
     return  `
             <div>
-                <div class="img" id="${id}">
-                    <img class="carta" src="${url}" alt="carta_api">
-                    </div>
+                <div class="img" id="${elemento.id}" data-info='${JSON.stringify(elemento).replace(/'/g, '&apos;')}'>
+                    <img class="carta" src="${elemento.card_images[0].image_url}" alt="carta_api">
+                </div>
                 <div class="button-container">
                     <button class="btn-buy">Comprar</button>
                     <button class="btn-cart">Agregar al carrito</button>
@@ -12,3 +12,7 @@ export async function carta(id, url)
             </div>
             `
 }    
+
+//JSON.stringify(elemento)
+
+//data-info="${JSON.stringify(elemento).replace(/'/g, '&apos;')}"
