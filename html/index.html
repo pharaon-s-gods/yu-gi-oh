@@ -16,12 +16,30 @@
     <main class="main" id="main">
         <nav class="navbar">            
             <div class="search-filters">
-                <input type="text" id="arquetipo" placeholder="Arquetipo" />
-                <input type="text" id="raza" placeholder="Raza" />
+                <select id="arquetipo">
+                    <option value="" disabled selected>Arquetipo</option>
+                    <option value="Dragon">Dragón</option>
+                    <option value="Mago Oscuro">Mago Oscuro</option>
+                    <!-- Agregar más arquetipos aquí -->
+                </select>
+        
+                <select id="raza">
+                    <option value="" disabled selected>Raza</option>
+                    <option value="Guerrero">Guerrero</option>
+                    <option value="Dragón">Dragón</option>
+                    <!-- Agregar más razas aquí -->
+                </select>
+        
                 <input type="text" id="nombre" placeholder="Nombre" />
-                <input type="text" id="tipo" placeholder="Tipo" />
+        
+                <select id="tipo">
+                    <option value="" disabled selected>Tipo</option>
+                    <option value="Monstruo">Monstruo</option>
+                    <option value="Hechizo">Hechizo</option>
+                    <option value="Trampa">Trampa</option>
+                </select>
             </div>
-        </nav>        
+        </nav>      
     </main>
     <footer id="footer">
         
