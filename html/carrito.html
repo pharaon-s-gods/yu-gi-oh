@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
     <link rel="stylesheet" href="../css/carrito.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="../js/service/carrito.js"></script>
 </head>
 <body>
-    <h1>Carrito de Compras</h1>
-    <div id="carrito">
-        <!-- Aquí se mostrarán los productos del carrito -->
-    </div>
+    <div id="header"></div> <!-- Header cargado con JS -->
 
-    <div id="pagination">
-        <button id="prev" disabled>Anterior</button>
-        <span id="page-info"></span>
-        <button id="next">Siguiente</button>
-    </div>
+    <main class="main">
+        <h1>Carrito de Compras</h1>
+        <div id="carrito" class="cartas-container"></div> <!-- Aquí se mostrarán los productos del carrito -->
 
-    <script src="../js/carrito.js"></script>
+        <div class="pagination">
+            <button id="prev" disabled>Anterior</button>
+            <span id="page-info"></span>
+            <button id="next">Siguiente</button>
+        </div>
+    </main>
+
+    <div id="footer"></div> <!-- Footer cargado con JS -->
 </body>
 </html>
