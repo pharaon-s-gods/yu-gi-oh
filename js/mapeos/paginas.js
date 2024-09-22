@@ -32,5 +32,5 @@ export async function paginas(pag, ult) {
 // Función que genera un enlace de paginación
 function generateLink(pageNumber, label) {
     let offset = pageNumber * 10;
-    return `<a href="http://127.0.0.1:5500/html/?offset=${offset}&limit=10" class="paginationElement">${label}</a>`;
+    return `<a href="http://127.0.0.1:5500/html/buscarCartas.html?offset=${offset}&limit=10" class="paginationElement">${label}</a>`;
 }
