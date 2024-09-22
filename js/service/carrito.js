@@ -1,3 +1,16 @@
+import { footer } from "../mapeos/footer.js";
+import { header } from "../mapeos/header.js";
+
+// Función para cargar header y footer
+function loadPage() {
+    header().then(html => {
+        $('#header').append(html); // Cambia 'header' por '#header'
+    });
+    footer().then(html => {
+        $('#footer').append(html); // Cambia 'footer' por '#footer'
+    });    
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const carritoContainer = document.getElementById("carrito");
     const pageInfo = document.getElementById("page-info");
@@ -8,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let paginaActual = 1;
     const idsEnCarrito = JSON.parse(localStorage.getItem("carritoIds")) || []; // Obtener los IDs del carrito
 
+    // Función para obtener la carta por ID
     async function obtenerCartaPorId(id) {
         try {
             const respuesta = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${id}`);
@@ -20,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Función para mostrar los productos en el carrito
     async function mostrarProductos() {
         const inicio = (paginaActual - 1) * resultadosPorPagina;
         const fin = inicio + resultadosPorPagina;
@@ -50,12 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
         actualizarBotones();
     }
 
+    // Función para actualizar los botones de paginación
     function actualizarBotones() {
         prevButton.disabled = paginaActual === 1;
         nextButton.disabled = paginaActual * resultadosPorPagina >= idsEnCarrito.length;
         pageInfo.textContent = `Página ${paginaActual} de ${Math.ceil(idsEnCarrito.length / resultadosPorPagina)}`;
     }
 
+    // Listeners para los botones de paginación
     prevButton.addEventListener("click", () => {
         if (paginaActual > 1) {
             paginaActual--;
@@ -72,4 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Inicializar la vista de productos
     mostrarProductos();
+
+    // Cargar el header y footer
+    loadPage(); // Llama a la función para cargar el header y el footer
 });
+

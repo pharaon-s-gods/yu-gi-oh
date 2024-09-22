@@ -11,6 +11,7 @@ export async function header()
                     <li><a href="buscarCartas.html">Búsqueda de cartas</a></li>
                     <li><a href="carrito.html">Ver carrito</a></li>
                     <li><a href="historial.html">Ver historial</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
             `

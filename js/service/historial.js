@@ -1,3 +1,6 @@
+import { footer } from "../mapeos/footer.js";
+import { header } from "../mapeos/header.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const cartasHistorialContainer = document.getElementById("cartas-historial");
     const pageInfo = document.getElementById("page-info");
@@ -47,6 +50,16 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButton.disabled = currentPage === Math.ceil(cartasHistorial.length / ITEMS_PER_PAGE);
     }
 
+    // Cargar el header y footer
+    async function loadPage() {
+        await header().then(html => {
+            $('#header').append(html); // Asegúrate de que sea correcto
+        });
+        await footer().then(html => {
+            $('#footer').append(html); // Asegúrate de que sea correcto
+        });
+    }
+
     prevButton.addEventListener("click", () => {
         if (currentPage > 1) {
             currentPage--;
@@ -61,6 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    renderCartas();
+    // Cargar el header y footer antes de renderizar las cartas
+    loadPage().then(renderCartas);
 });
-
