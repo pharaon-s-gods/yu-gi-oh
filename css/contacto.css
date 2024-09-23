@@ -1,19 +1,37 @@
-/* Estilo para el contenedor principal */
-.contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-/* Estilo para la información de contacto */
+body {
+    background-color: #2d2727;
+    color: #333;
+    font-size: 16px;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 40px auto; /* Agregado para mantener consistencia con el diseño de index */
+    padding: 20px;
+    background-color: white; /* Fondo blanco para el contenedor */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333; /* Color del encabezado */
+}
+
 .contact-info {
     margin-bottom: 30px;
     font-size: 18px;
     line-height: 1.8;
+    color: #333; /* Color del texto */
 }
 
-/* Estilo para el mapa */
 .map-container {
     display: flex;
     justify-content: center;
@@ -24,5 +42,6 @@
     width: 100%;
     max-width: 800px;
     height: 450px;
-    border: 2px solid #333;
+    border: 2px solid #3498db; /* Borde de color similar al del index */
+    border-radius: 4px; /* Bordes redondeados para el iframe */
 }

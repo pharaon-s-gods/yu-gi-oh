@@ -1,18 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #2d2727; /* Mismo fondo oscuro que en index */
+    color: #333; /* Color de texto similar */
     padding: 20px;
 }
 
 main {
-    background-color: white;
-    border-radius: 8px;
+    background-color: rgba(156, 65, 170, 0.9); /* Fondo de tarjetas similar */
+    border-radius: 15px; /* Radius como el de las tarjetas */
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
 
 h1 {
     margin-bottom: 20px;
+    color: aliceblue; /* Color de texto de título */
+}
+
+h2 {
+    margin: 10px 0; /* Espaciado para el título de la carta */
+    color: aliceblue; /* Color similar para la consistencia */
+}
+
+.card-image-container {
+    text-align: center; /* Centrar la imagen */
+    margin-bottom: 20px; /* Espacio entre imagen y formulario */
+}
+
+.card-image-container img {
+    max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+    border-radius: 8px; /* Radio de borde para la imagen */
 }
 
 form {
@@ -26,6 +49,7 @@ form div {
 
 label {
     margin-bottom: 5px;
+    color: aliceblue; /* Asegura que las etiquetas sean visibles */
 }
 
 input[type="email"],
@@ -40,11 +64,12 @@ button {
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #007BFF;
+    background-color: #007BFF; /* Mismo color de botón */
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Suave transición */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Color al pasar el mouse */
 }

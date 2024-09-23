@@ -4,10 +4,10 @@ import { header } from "../mapeos/header.js";
 // Función para cargar header y footer
 function loadPage() {
     header().then(html => {
-        $('#header').append(html);
+        $('header').append(html);
     });
     footer().then(html => {
-        $('#footer').append(html);
+        $('footer').append(html);
     });
 }
 

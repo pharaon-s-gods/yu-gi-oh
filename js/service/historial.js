@@ -53,10 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cargar el header y footer
     async function loadPage() {
         await header().then(html => {
-            $('#header').append(html); // Asegúrate de que sea correcto
+            $('header').append(html); // Asegúrate de que sea correcto
         });
         await footer().then(html => {
-            $('#footer').append(html); // Asegúrate de que sea correcto
+            $('footer').append(html); // Asegúrate de que sea correcto
         });
     }
 

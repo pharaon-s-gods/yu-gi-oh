@@ -4,10 +4,10 @@ import { header } from "../mapeos/header.js";
 // Función para cargar header y footer
 function loadPage() {
     header().then(html => {
-        $('#header').append(html); // Cambia 'header' por '#header'
+        $('header').html(html); // Cambia 'header' por '#header'
     });
     footer().then(html => {
-        $('#footer').append(html); // Cambia 'footer' por '#footer'
+        $('footer').html(html); // Cambia 'footer' por '#footer'
     });    
 }
 
@@ -93,4 +93,3 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cargar el header y footer
     loadPage(); // Llama a la función para cargar el header y el footer
 });
-
