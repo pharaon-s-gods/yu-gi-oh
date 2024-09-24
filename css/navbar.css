@@ -1,0 +1,22 @@
+.search-filters{
+    width: 100vw;
+    height: auto;
+    padding-left: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.filter{
+    margin-top: 10px;
+    width: 40vw;
+    background-color: black;
+    color: whitesmoke;
+}
+
+.filter-text{
+    margin-top: 10px;
+    width: 70vw;
+    background-color: black;
+    color: whitesmoke;
+}

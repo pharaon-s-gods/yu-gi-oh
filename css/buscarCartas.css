@@ -19,14 +19,6 @@ body {
     align-items: center;
 }
 
-
-
-
-
-
-
-
-
 .main {
     display: flex;
     flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
@@ -38,15 +30,6 @@ body {
     width: 90vw;
     margin-bottom: 15px;
 }
-
-
-
-
-
-
-
-
-
 
 .contenedoritem {
     width: 100vw;
@@ -99,71 +82,9 @@ body {
     transform: scale(1.05); 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .imgOverlay{
     width: 90vw;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .overlay {
     position: fixed;
@@ -221,8 +142,6 @@ body {
     width: 100%;
     max-height: 10vh;
 }
-
-
 
 .pagination {
     width: 90vw;

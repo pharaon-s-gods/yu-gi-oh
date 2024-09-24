@@ -1,7 +1,7 @@
 export async function navBar(archetypes, filters)
 {
     // Creamos un string con las opciones del select basado en el JSON elemento
-    let options = '<option>Arquetipo</option>';
+    let options = '<option value="">Arquetipo</option>';
     
     archetypes.forEach(item => {
         // Verificar si el arquetipo actual está en los filtros, si lo está, lo seleccionamos
@@ -16,7 +16,8 @@ export async function navBar(archetypes, filters)
 
     return  `
             <div class="search-filters">
-                <select id="tipo">
+                <input class="filter-text" type="text" id="nombre" placeholder="Nombre" value="${enteredName}" />
+                <select class="filter" id="tipo">
                     <option value="" ${!selectedType ? 'selected' : ''}>Tipo</option>
                     <option ${selectedType === 'Effect Monster' ? 'selected' : ''}>Effect Monster</option>
                     <option ${selectedType === 'Flip Effect Monster' ? 'selected' : ''}>Flip Effect Monster</option>
@@ -48,7 +49,7 @@ export async function navBar(archetypes, filters)
                     <option ${selectedType === 'XYZ Pendulum Effect Monster' ? 'selected' : ''}>XYZ Pendulum Effect Monster</option>
                 </select>
                 
-                <select id="raza">
+                <select class="filter" id="raza">
                     <option value="" ${!selectedRace ? 'selected' : ''}>Raza</option>
                     <option ${selectedRace === 'Aqua' ? 'selected' : ''}>Aqua</option>
                     <option ${selectedRace === 'Beast' ? 'selected' : ''}>Beast</option>
@@ -85,11 +86,9 @@ export async function navBar(archetypes, filters)
                     <option ${selectedRace === 'Zombie' ? 'selected' : ''}>Zombie</option>
                 </select>
 
-                <select id="arquetipo">
+                <select class="filter" id="arquetipo">
                     ${options}
                 </select>
-                
-                <input type="text" id="nombre" placeholder="Nombre" value="${enteredName}" />
             </div>
             `;
 }

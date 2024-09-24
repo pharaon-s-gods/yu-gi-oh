@@ -2,7 +2,7 @@ export async function getAll() {
     let baseUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
     let urlParams = new URLSearchParams(window.location.search);
 
-    let fname = urlParams.get('fanme') || '';
+    let fname = urlParams.get('fname') || '';
     let type = urlParams.get('type') || '';
     let race = urlParams.get('race') || '';
     let archetype = urlParams.get('archetype') || '';
