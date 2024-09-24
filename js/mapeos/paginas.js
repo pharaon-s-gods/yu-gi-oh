@@ -1,7 +1,8 @@
-export async function paginas(pag, ult) {
-    let ultimaPagina = ult;
+export async function paginas(pag, totalItems) {
+    // Calcular la última página correctamente
+    let ultimaPagina = Math.ceil(totalItems / 10) - 1;
     let array = [];
-    
+
     // Primera página (<<) y página anterior (<)
     if (pag > 1) {
         array.push(generateLink(0, "<<")); // Primera página
@@ -21,7 +22,7 @@ export async function paginas(pag, ult) {
         array.push(generateLink(pag, ">")); // Página siguiente
         array.push(generateLink(ultimaPagina, ">>")); // Última página
     }
-    
+
     return `
         <div class="pagination">
             ${array.join('')}
@@ -29,8 +30,17 @@ export async function paginas(pag, ult) {
     `;
 }
 
-// Función que genera un enlace de paginación
+// Función que genera un enlace de paginación, manteniendo los parámetros de la URL actual
 function generateLink(pageNumber, label) {
+    // Obtener los parámetros de la URL actual
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Actualizar el parámetro 'offset' según el número de página
     let offset = pageNumber * 10;
-    return `<a href="http://127.0.0.1:5500/html/buscarCartas.html?offset=${offset}&limit=10" class="paginationElement">${label}</a>`;
+    urlParams.set('offset', offset);
+
+    // Generar la nueva URL con los parámetros existentes
+    let newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+
+    return `<a href="${newUrl}" class="paginationElement">${label}</a>`;
 }

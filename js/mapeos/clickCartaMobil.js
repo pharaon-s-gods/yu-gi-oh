@@ -2,7 +2,7 @@ export async function clickCartaMobil(elemento)
 {
     return  `
             <div class="overlay">
-                <a href="https://www.example.com" class="share-icon">
+                <a href="../../html/share.html" class="share-icon">
                     <img src="../../img/shareIcon.png" alt="Compartir">
                 </a>
                 <div class="elemento">

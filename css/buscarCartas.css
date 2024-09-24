@@ -10,6 +10,23 @@ body {
     font-family: sans-serif;
 }
 
+.sinCartas{
+    color: whitesmoke;
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
 .main {
     display: flex;
     flex-direction: column; /* Asegura que los elementos se apilen verticalmente */

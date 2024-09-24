@@ -1,10 +1,13 @@
-import { clickCartaMobil } from "../mapeos/clickCartaMobil.js";
-import { carta } from "../mapeos/carta.js";
+import { getAll } from "../fetchs/getAll.js";
 import { getCard } from "../fetchs/getCard.js";
+import { getArchetypes } from "../fetchs/getArchetypes.js";
+import { carta } from "../mapeos/carta.js";
 import { footer } from "../mapeos/footer.js";
 import { header } from "../mapeos/header.js";
+import { navBar } from "../mapeos/navBar.js";
+import { sinCartas } from "../mapeos/sinCartas.js";
 import { paginas } from "../mapeos/paginas.js";
-import { getAll } from "../fetchs/getAll.js";
+import { clickCartaMobil } from "../mapeos/clickCartaMobil.js";
 
 // Variable global para manejar el overlay
 let isOverlayActive = false;
@@ -14,7 +17,7 @@ let isOverlayActive = false;
 function getParamsFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     let offset = parseInt(urlParams.get('offset') || 0);
-    let limit = parseInt(urlParams.get('limit') || 10);
+    let limit = 10;
 
     let filters = {};
     urlParams.forEach((value, key) => {
@@ -22,7 +25,6 @@ function getParamsFromUrl() {
             filters[key] = value;
         }
     });
-
     return { offset, limit, filters };
 }
 
@@ -32,33 +34,13 @@ function loadHeaderAndFooter() {
     footer().then(html => $('footer').append(html));
 }
 
-// Función para obtener la cantidad total de páginas
-function calculatePages() {
-    return getAll().then(response => 
-        response.json().then(data => {
-            let totalCards = data.data.length;
-            let aux = totalCards % 10;
-            return (totalCards - aux) / 10; // Total de páginas
-        })
-    );
-}
-
-// Función para mapear las cartas y paginación
-function displayCardsAndPagination(offset, limit, pag) {
-    getCard(offset, limit).then(response => {
+function loadNavbar(filters) {
+    getArchetypes().then(response => {
         if (response.ok) {
-            response.json().then(data => {
-                // Mapeo de las cartas
-                data.data.forEach(card => {
-                    carta(card).then(html => {
-                        $('#main').append(html);
-                    });
-                });
-                // Cargar la paginación
-                calculatePages().then(resultado => {
-                    paginas(pag, resultado).then(html => {
-                        $('#main').append(html);
-                    });
+            response.json().then(archetypes => {
+                navBar(archetypes, filters).then(html => {
+                    // Selecciona el elemento por la clase 'navbar'
+                    $('nav').append(html);
                 });
             });
         } else {
@@ -68,6 +50,101 @@ function displayCardsAndPagination(offset, limit, pag) {
         console.error('Error fetching data:', error);
     });
 }
+
+// Función para obtener la cantidad total de páginas
+function calculatePages() {
+    return getAll().then(response => 
+        response.json().then(data => {
+            return data.data.length;
+        })
+    );
+}
+
+// Función para mapear las cartas y paginación
+async function displayCardsAndPagination(offset, limit, pag) {
+    try {
+        // Hacer el primer fetch usando await
+        const response = await getCard(offset, limit);
+        if (!response.ok) {
+            // Si la respuesta no es exitosa, lanzar un error con el mensaje de estado
+            throw new Error(`Error fetching data: ${response.statusText}`);
+        }
+        // Parsear los datos de la respuesta
+        const data = await response.json();
+        // Mapeo de las cartas
+        for (const card of data.data) {
+            const html = await carta(card);
+            $('#main').append(html);
+        }
+        // Calcular las páginas
+        const totalCartas = await calculatePages();
+        // Generar la paginación
+        const paginacionHTML = await paginas(pag, totalCartas);
+        $('#main').append(paginacionHTML);
+    } catch (error) {
+        const html = await sinCartas();
+        $('main').html(html);
+    }
+}
+
+
+
+
+// Función para manejar los eventos y recargar la página con los parámetros de la URL
+function handleFilters() {
+    // Obtener los valores actuales de los inputs
+    const nombre = $('#nombre').val();
+    const tipo = $('#tipo').val();
+    const raza = $('#raza').val();
+    const arquetipo = $('#arquetipo').val();
+
+    // Crear un objeto para almacenar los parámetros
+    let params = {};
+
+    // Agregar los parámetros solo si tienen valor, usando encodeURIComponent
+    if (nombre && nombre.length >= 3) {
+        params.fname = encodeURIComponent(nombre); // Codificar el valor del parámetro
+    }
+    if (tipo && tipo !== 'Tipo') {
+        params.type = encodeURIComponent(tipo);
+    }
+    if (raza && raza !== 'Select Race') {
+        params.race = encodeURIComponent(raza);
+    }
+    if (arquetipo && arquetipo !== 'Select archetype') {
+        params.archetype = encodeURIComponent(arquetipo);
+    }
+
+    // Agregar los valores por defecto que siempre deben estar presentes
+    params.num = 10;
+    params.offset = 0;
+
+    // Convertir el objeto params a una cadena de consulta (query string) usando URLSearchParams
+    const queryString = Object.keys(params)
+        .map(key => `${key}=${params[key]}`)
+        .join('&');
+
+    // Redirigir a la nueva URL con los parámetros seleccionados
+    console.log(queryString); // Verifica que los espacios se convierten en %20
+    window.location.href = '?' + queryString;
+}
+
+
+
+// Eventos 'change' para los select
+$(document).on('#tipo, #raza, #arquetipo').on('change', function() {
+    handleFilters(); // Llamar a la función cuando cambie el valor de un select
+});
+
+// Evento 'input' para el campo de texto, con verificación de longitud mínima de 3 letras
+$(document).on('#nombre').on('input', function() {
+    if ($(this).val().length >= 3) {
+        handleFilters(); // Llamar a la función solo cuando hay 3 o más letras
+    }
+});
+
+
+
 
 // Función para manejar el click de las imágenes
 function handleImageClick() {
@@ -88,6 +165,7 @@ function handleImageClick() {
 
         //storedIds.unshift(elemento.id);                                           //Agregar el ID al principio del array
         localStorage.setItem('cartasVisualizadasId', JSON.stringify(storedIds));    // Guardar el array actualizado en localStorage
+        localStorage.setItem('shareId', elemento.id);
 
         // Activar el estado de overlay
         isOverlayActive = true;
@@ -132,6 +210,7 @@ function initPage() {
     const pag = (offset / 10) + 1;
     
     loadHeaderAndFooter(); // Cargar el header y footer
+    loadNavbar(filters);
     agregarCarrito();
     displayCardsAndPagination(offset, limit, pag); // Mostrar cartas y paginación
     handleImageClick(); // Manejar clicks en las imágenes

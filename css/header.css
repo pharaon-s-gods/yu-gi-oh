@@ -19,24 +19,24 @@
     max-width: 200px;
 }
 
-.navbar{
+.enlacesHeader{
     width: auto;
     max-width: 400px;
 }
 
-.navbar ul {
+.enlacesHeader ul {
     display: flex; 
     justify-content: space-between;
 }
 
-.navbar ul li {
+.enlacesHeader ul li {
     display: flex;
     align-items: center;
     text-align: center;
     width: 90px;
 }
 
-.navbar ul li a {
+.enlacesHeader ul li a {
     color: white; 
     text-decoration: none;
     font-size: 16px; 
@@ -45,7 +45,7 @@
 }
 
 
-.navbar ul li a:hover {
+.enlacesHeader ul li a:hover {
     background-color: #555; 
     border-radius: 5px;
 }
