@@ -14,7 +14,9 @@ export async function paginas(pag, totalItems) {
     let endPage = Math.min(ultimaPagina, pag + 2);
 
     for (let i = startPage; i <= endPage; i++) {
-        array.push(generateLink(i, i === pag - 1 ? `<strong>${i + 1}</strong>` : `${i + 1}`));
+        // Agrega la clase 'active' si la página actual es la misma que 'i'
+        const isActive = i === pag - 1 ? 'activePage' : '';
+        array.push(generateLink(i, `${i + 1}`, isActive));
     }
 
     // Página siguiente (>) y última página (>>)
@@ -31,7 +33,7 @@ export async function paginas(pag, totalItems) {
 }
 
 // Función que genera un enlace de paginación, manteniendo los parámetros de la URL actual
-function generateLink(pageNumber, label) {
+function generateLink(pageNumber, label, activePage = '') {
     // Obtener los parámetros de la URL actual
     const urlParams = new URLSearchParams(window.location.search);
     
@@ -42,5 +44,6 @@ function generateLink(pageNumber, label) {
     // Generar la nueva URL con los parámetros existentes
     let newUrl = `${window.location.pathname}?${urlParams.toString()}`;
 
-    return `<a href="${newUrl}" class="paginationElement">${label}</a>`;
+    // Retornar el enlace con la clase 'active' si corresponde
+    return `<a href="${newUrl}" class="paginationElement ${activePage}">${label}</a>`;
 }

@@ -1,7 +1,7 @@
 export async function carta(elemento)
 {
     return  `
-            <div class="contenedoritem">
+            <div class="contenedorItem">
                 <div class="img" id="${elemento.id}" data-info='${JSON.stringify(elemento).replace(/'/g, '&apos;')}'>
                     <img class="carta" src="${elemento.card_images[0].image_url}" alt="carta_api">
                 </div>
