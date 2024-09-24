@@ -1,27 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
+    background-color: #2d2727;
+    color: #333;
+    font-size: 16px;
+}
+
+.main {
+    text-align: center; /* Centrar el contenido del main */
 }
 
 #carrito {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Colocar productos en columna */
+    align-items: center; /* Centrar productos */
 }
 
 .producto {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
+    background-color: #fff; /* Fondo blanco para productos */
+    border: 1px solid #ccc; /* Borde gris */
+    padding: 10px; /* Espaciado interno */
+    margin: 10px 0; /* Espaciado entre productos */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 400px; /* Ancho máximo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
-#pagination {
+.producto img {
+    width: 100%; /* Ajusta imagen al contenedor */
+    border-radius: 5px 5px 0 0; /* Bordes redondeados en la parte superior */
+}
+
+.producto h2 {
+    margin: 10px 0; /* Espaciado del título */
+    font-size: 1.5rem; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+}
+
+.producto p {
+    margin: 5px 0; /* Espaciado del precio */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    color: #007BFF; /* Color del precio */
+}
+
+.pagination {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centra los botones de paginación */
+    align-items: center; /* Centra verticalmente */
+    margin-top: 20px; /* Margen superior */
 }
 
-button {
-    margin: 0 10px;
+.pagination button {
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: #007BFF; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    margin: 0 10px; /* Espaciado entre botones */
+}
+
+.pagination button:hover {
+    background-color: #0056b3; /* Color del botón al pasar el mouse */
+}
+
+.pagination span {
+    font-size: 1rem; /* Tamaño de fuente para la información de la página */
+    color: #333; /* Color del texto */
 }

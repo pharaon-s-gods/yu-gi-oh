@@ -1,5 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
 body {
-    background-color: #f4f4f4; /* Fondo suave */
+    background-color: #2d2727;
+    color: #333;
+    font-size: 16px;
 }
 
 .main {
@@ -15,12 +24,45 @@ body {
 
 .carta {
     margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #fff;
+    border: 1px solid #ccc; /* Borde de las cartas */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    background-color: #9c41aa46; /* Fondo suave */
+    color: #333; /* Color del texto dentro de la carta */
+}
+
+.carta img {
+    width: 100%; /* Asegura que la imagen se ajuste al contenedor */
+    border-radius: 5px 5px 0 0; /* Bordes redondeados en la parte superior */
+}
+
+.carta h3 {
+    margin: 10px 0 0; /* Espaciado del título */
+    font-size: 1.2rem; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
 }
 
 .pagination {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination button {
+    margin: 0 10px; /* Espaciado entre botones */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF; /* Color del botón */
+    color: white;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #0056b3; /* Color del botón al pasar el mouse */
+}
+
+.pagination span {
+    font-size: 1rem; /* Tamaño de fuente para la información de la página */
 }
