@@ -4,11 +4,11 @@ import { header } from "../mapeos/header.js";
 // Función para cargar header y footer
 function loadPage() {
     header().then(html => {
-        $('header').html(html); // Cambia 'header' por '#header'
+        $('header').html(html);
     });
     footer().then(html => {
-        $('footer').html(html); // Cambia 'footer' por '#footer'
-    });    
+        $('footer').html(html);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const resultadosPorPagina = 10;
     let paginaActual = 1;
-    const idsEnCarrito = JSON.parse(localStorage.getItem("carritoIds")) || []; // Obtener los IDs del carrito
+    const idsEnCarrito = JSON.parse(localStorage.getItem("carritoIds")) || {}; // Obtener los IDs y cantidades del carrito
 
     // Función para obtener la carta por ID
     async function obtenerCartaPorId(id) {
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function mostrarProductos() {
         const inicio = (paginaActual - 1) * resultadosPorPagina;
         const fin = inicio + resultadosPorPagina;
-        const idsPaginados = idsEnCarrito.slice(inicio, fin);
+        const idsPaginados = Object.keys(idsEnCarrito).slice(inicio, fin);
 
         carritoContainer.innerHTML = ""; // Limpiar el contenido anterior
 
@@ -47,12 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         cartas.forEach(carta => {
             if (carta) {
+                const cantidad = idsEnCarrito[carta.id];
                 const div = document.createElement("div");
                 div.classList.add("producto");
+                div.setAttribute("data-id", carta.id); // Agregar data-id para identificarlas
                 div.innerHTML = `
                     <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
                     <h2>${carta.name}</h2>
                     <p>Precio: $${carta.card_prices[0].price || 'No disponible'}</p>
+                    <p>Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
+                    <button class="btn-mas" data-id="${carta.id}">+</button>
+                    <button class="btn-menos" data-id="${carta.id}">-</button>
+                    <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
                 `;
                 carritoContainer.appendChild(div);
             } else {
@@ -63,13 +69,75 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         actualizarBotones();
+        agregarEventos(); // Agregar eventos a los botones después de cargar los productos
+    }
+
+    // Función para actualizar una carta en el carrito
+    async function actualizarCarta(id) {
+        const carta = await obtenerCartaPorId(id);
+        const cantidad = idsEnCarrito[id];
+        const div = carritoContainer.querySelector(`.producto[data-id="${id}"]`); // Seleccionar el div específico
+
+        if (carta && div) {
+            div.innerHTML = `
+                <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
+                <h2>${carta.name}</h2>
+                <p>Precio: $${carta.card_prices[0].price || 'No disponible'}</p>
+                <p>Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
+                <button class="btn-mas" data-id="${carta.id}">+</button>
+                <button class="btn-menos" data-id="${carta.id}">-</button>
+                <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
+            `;
+            agregarEventos(); // Reagregar eventos a los nuevos botones
+        }
+    }
+
+    // Función para agregar eventos a los botones
+    function agregarEventos() {
+        const btnMas = document.querySelectorAll(".btn-mas");
+        const btnMenos = document.querySelectorAll(".btn-menos");
+        const btnEliminar = document.querySelectorAll(".btn-eliminar");
+
+        btnMas.forEach(btn => {
+            btn.addEventListener("click", async (e) => {
+                e.preventDefault(); // Evitar el comportamiento predeterminado
+                const id = e.target.dataset.id;
+                idsEnCarrito[id] += 1; // Aumentar cantidad
+                localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
+                await actualizarCarta(id); // Solo actualizar la carta modificada
+            });
+        });
+
+        btnMenos.forEach(btn => {
+            btn.addEventListener("click", async (e) => {
+                e.preventDefault(); // Evitar el comportamiento predeterminado
+                const id = e.target.dataset.id;
+                if (idsEnCarrito[id] > 1) {
+                    idsEnCarrito[id] -= 1; // Disminuir cantidad
+                } else {
+                    delete idsEnCarrito[id]; // Eliminar si la cantidad llega a 0
+                }
+                localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
+                await actualizarCarta(id); // Solo actualizar la carta modificada
+            });
+        });
+
+        btnEliminar.forEach(btn => {
+            btn.addEventListener("click", async (e) => {
+                e.preventDefault(); // Evitar el comportamiento predeterminado
+                const id = e.target.dataset.id;
+                delete idsEnCarrito[id]; // Eliminar todas las instancias de esta carta
+                localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
+                mostrarProductos(); // Volver a mostrar los productos
+            });
+        });
     }
 
     // Función para actualizar los botones de paginación
     function actualizarBotones() {
         prevButton.disabled = paginaActual === 1;
-        nextButton.disabled = paginaActual * resultadosPorPagina >= idsEnCarrito.length;
-        pageInfo.textContent = `Página ${paginaActual} de ${Math.ceil(idsEnCarrito.length / resultadosPorPagina)}`;
+        nextButton.disabled = paginaActual * resultadosPorPagina >= Object.keys(idsEnCarrito).length;
+        pageInfo.textContent = `Página ${paginaActual} de ${Math.ceil(Object.keys(idsEnCarrito).length / resultadosPorPagina)}`;
     }
 
     // Listeners para los botones de paginación
@@ -81,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     nextButton.addEventListener("click", () => {
-        if (paginaActual * resultadosPorPagina < idsEnCarrito.length) {
+        if (paginaActual * resultadosPorPagina < Object.keys(idsEnCarrito).length) {
             paginaActual++;
             mostrarProductos();
         }
@@ -91,5 +159,5 @@ document.addEventListener("DOMContentLoaded", () => {
     mostrarProductos();
 
     // Cargar el header y footer
-    loadPage(); // Llama a la función para cargar el header y el footer
+    loadPage();
 });
