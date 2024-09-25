@@ -13,24 +13,30 @@ body {
 
 .main {
     text-align: center; /* Centrar el contenido del main */
+    padding: 20px; /* Asegurarse que el padding sea igual en ambas páginas */
+}
+
+h1 {
+    color: white; /* Color blanco para el título */
+    margin-bottom: 20px; /* Espacio entre el título y las cartas */
 }
 
 #carrito {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Espacio inferior del carrito */
     display: flex;
-    flex-direction: column; /* Colocar productos en columna */
-    align-items: center; /* Centrar productos */
+    flex-wrap: wrap; /* Permitir que los productos se ajusten */
+    justify-content: center; /* Centrar los productos */
+    background-color: #2d2727; /* Fondo del contenedor principal */
 }
 
 .producto {
-    background-color: #fff; /* Fondo blanco para productos */
+    background-color: #4c2e4b; /* Fondo lila para productos */
     border: 1px solid #ccc; /* Borde gris */
     padding: 10px; /* Espaciado interno */
-    margin: 10px 0; /* Espaciado entre productos */
+    margin: 10px; /* Espaciado entre productos */
     border-radius: 5px; /* Bordes redondeados */
-    width: 100%; /* Ocupa todo el ancho disponible */
-    max-width: 400px; /* Ancho máximo */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    flex: 0 1 calc(20% - 20px); /* Ocupa 20% del ancho en escritorios para 5 productos por fila */
 }
 
 .producto img {
@@ -41,7 +47,7 @@ body {
 .producto h2 {
     margin: 10px 0; /* Espaciado del título */
     font-size: 1.5rem; /* Tamaño de fuente */
-    color: #333; /* Color del texto */
+    color: white; /* Color del texto en blanco */
 }
 
 .producto p {
@@ -55,6 +61,8 @@ body {
     justify-content: center; /* Centra los botones de paginación */
     align-items: center; /* Centra verticalmente */
     margin-top: 20px; /* Margen superior */
+    margin-bottom: 20px; /* Espacio debajo de la paginación */
+    color: white; /* Color del texto de la paginación */
 }
 
 .pagination button {
@@ -73,5 +81,24 @@ body {
 
 .pagination span {
     font-size: 1rem; /* Tamaño de fuente para la información de la página */
-    color: #333; /* Color del texto */
+    color: white; /* Color del texto */
+}
+
+/* Responsividad */
+@media (max-width: 768px) { /* Para celulares */
+    .producto {
+        flex: 0 1 calc(100% - 20px); /* 1 producto por fila */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) { /* Para tablets */
+    .producto {
+        flex: 0 1 calc(30% - 20px); /* 3 productos por fila */
+    }
+}
+
+@media (min-width: 1025px) { /* Para escritorio */
+    .producto {
+        flex: 0 1 calc(20% - 20px); /* 5 productos por fila */
+    }
 }
