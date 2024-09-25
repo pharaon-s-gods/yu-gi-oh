@@ -37,6 +37,8 @@ h1 {
     border-radius: 5px; /* Bordes redondeados */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
     flex: 0 1 calc(20% - 20px); /* Ocupa 20% del ancho en escritorios para 5 productos por fila */
+    max-width: calc(20% - 20px); /* Asegura que el ancho no supere el 20% */
+    overflow: hidden; /* Oculta el desbordamiento */
 }
 
 .producto img {
@@ -48,6 +50,9 @@ h1 {
     margin: 10px 0; /* Espaciado del título */
     font-size: 1.5rem; /* Tamaño de fuente */
     color: white; /* Color del texto en blanco */
+    white-space: nowrap; /* Mantener el texto en una sola línea */
+    overflow: hidden; /* Ocultar el desbordamiento */
+    text-overflow: ellipsis; /* Mostrar puntos suspensivos si el texto es demasiado largo */
 }
 
 .producto p {
@@ -75,7 +80,11 @@ h1 {
 }
 
 .producto button:active {
-    transform: scale(0.95); /* Reduce el tamaño del botón al hacer clic */
+    transform: scale(0.95); /* Reduce el tamaño al hacer clic */
+}
+
+.cantidad {
+    color: yellow; /* Cambia el color del texto a amarillo */
 }
 
 .btn-mas {
@@ -126,17 +135,20 @@ h1 {
 @media (max-width: 768px) { /* Para celulares */
     .producto {
         flex: 0 1 calc(100% - 20px); /* 1 producto por fila */
+        max-width: calc(100% - 20px); /* Asegura que el ancho no supere el 100% */
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) { /* Para tablets */
     .producto {
         flex: 0 1 calc(30% - 20px); /* 3 productos por fila */
+        max-width: calc(30% - 20px); /* Asegura que el ancho no supere el 30% */
     }
 }
 
 @media (min-width: 1025px) { /* Para escritorio */
     .producto {
         flex: 0 1 calc(20% - 20px); /* 5 productos por fila */
+        max-width: calc(20% - 20px); /* Asegura que el ancho no supere el 20% */
     }
 }

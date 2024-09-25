@@ -52,14 +52,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 div.classList.add("producto");
                 div.setAttribute("data-id", carta.id); // Agregar data-id para identificarlas
                 div.innerHTML = `
-                    <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
-                    <h2>${carta.name}</h2>
-                    <p>Precio: $${carta.card_prices[0].price || 'No disponible'}</p>
-                    <p>Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
-                    <button class="btn-mas" data-id="${carta.id}">+</button>
-                    <button class="btn-menos" data-id="${carta.id}">-</button>
-                    <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
+                    <div class="producto-imagen-titulo">
+                        <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
+                        <h2>${carta.name}</h2>
+                    </div>
+                    <div class="producto-cantidad-botones">
+                        <p class="cantidad" style="color: yellow;">Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
+                        <button class="btn-mas" data-id="${carta.id}">+</button>
+                        <button class="btn-menos" data-id="${carta.id}">-</button>
+                        <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
+                    </div>
                 `;
+
                 carritoContainer.appendChild(div);
             } else {
                 const div = document.createElement("div");
@@ -80,14 +84,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (carta && div) {
             div.innerHTML = `
-                <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
-                <h2>${carta.name}</h2>
-                <p>Precio: $${carta.card_prices[0].price || 'No disponible'}</p>
-                <p>Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
-                <button class="btn-mas" data-id="${carta.id}">+</button>
-                <button class="btn-menos" data-id="${carta.id}">-</button>
-                <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
+                <div class="producto-imagen-titulo">
+                    <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
+                    <h2>${carta.name}</h2>
+                </div>
+                <div class="producto-cantidad-botones">
+                    <p class="cantidad" style="color: yellow;">Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
+                    <button class="btn-mas" data-id="${carta.id}">+</button>
+                    <button class="btn-menos" data-id="${carta.id}">-</button>
+                    <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
+                </div>
             `;
+
             agregarEventos(); // Reagregar eventos a los nuevos botones
         }
     }
@@ -118,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     delete idsEnCarrito[id]; // Eliminar si la cantidad llega a 0
                 }
                 localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
-                await actualizarCarta(id); // Solo actualizar la carta modificada
+                mostrarProductos(); // Mostrar los productos después de actualizar
             });
         });
 
@@ -128,7 +136,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const id = e.target.dataset.id;
                 delete idsEnCarrito[id]; // Eliminar todas las instancias de esta carta
                 localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
-                mostrarProductos(); // Volver a mostrar los productos
+                // Evitar la recarga visual
+                carritoContainer.style.opacity = '0'; // Hacer el contenedor invisible
+                await mostrarProductos(); // Volver a mostrar los productos después de eliminar
+                carritoContainer.style.opacity = '1'; // Hacer el contenedor visible nuevamente
             });
         });
     }
