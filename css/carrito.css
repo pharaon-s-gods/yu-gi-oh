@@ -56,6 +56,44 @@ h1 {
     color: #007BFF; /* Color del precio */
 }
 
+/* Estilos para los botones */
+.producto button {
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #007BFF; /* Color de fondo azul */
+    color: white; /* Color del texto en blanco */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    margin: 5px 0; /* Espaciado entre botones */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave para el fondo y transformación */
+    font-size: 1rem; /* Tamaño de fuente */
+}
+
+.producto button:hover {
+    background-color: #0056b3; /* Color del botón al pasar el mouse */
+    transform: scale(1.05); /* Agranda un poco el botón al pasar el mouse */
+}
+
+.producto button:active {
+    transform: scale(0.95); /* Reduce el tamaño del botón al hacer clic */
+}
+
+.btn-mas {
+    background-color: #28a745; /* Color verde para el botón "+" */
+}
+
+.btn-mas:hover {
+    background-color: #218838; /* Color verde más oscuro al pasar el mouse */
+}
+
+.btn-menos, .btn-eliminar {
+    background-color: #dc3545; /* Color rojo para los botones "-" y "Eliminar todo" */
+}
+
+.btn-menos:hover, .btn-eliminar:hover {
+    background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
+}
+
 .pagination {
     display: flex;
     justify-content: center; /* Centra los botones de paginación */
