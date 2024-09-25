@@ -1,8 +1,8 @@
 /* Estilos para el footer */
 footer {
     position: static;
-    background-color: #222; /* Color de fondo oscuro */
-    color: white; /* Color del texto blanco */
+    background-color: #222; /* Fondo oscuro */
+    color: white; /* Texto blanco */
     padding: 20px; /* Espaciado interno */
     text-align: center; /* Centra el texto */
     font-size: 14px; /* Tamaño de la fuente */
@@ -11,7 +11,7 @@ footer {
 /* Contenedor del footer */
 .footer-container {
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten */
+    flex-wrap: wrap; /* Permite ajustar elementos */
     justify-content: center; /* Centra los elementos */
     max-width: 1200px; /* Ancho máximo */
     margin: 0 auto; /* Centra el contenedor */
@@ -19,18 +19,42 @@ footer {
 
 /* Sección del footer */
 .footer-section {
-    flex: 1; /* Hace que cada sección ocupe el mismo espacio */
-    margin: 10px; /* Espacio alrededor de las secciones */
+    flex: 1; /* Cada sección ocupa el mismo espacio */
+    margin: 10px; /* Espaciado alrededor de las secciones */
     min-width: 200px; /* Ancho mínimo de las secciones */
 }
 
 /* Estilo de los enlaces del footer */
 .footer-section a {
-    color: #1e90ff; /* Color azul de los enlaces */
-    text-decoration: none; /* Quita el subrayado */
+    color: #1e90ff; /* Color azul para los enlaces */
+    text-decoration: none; /* Sin subrayado */
 }
 
-/* Estilo de los enlaces del footer en hover */
+/* Enlaces en hover */
 .footer-section a:hover {
-    text-decoration: underline; /* Subraya el enlace en hover */
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Estilos para el banner */
+.banner-container {
+    display: none; /* Oculto por defecto */
+    background-color: #333; /* Fondo gris oscuro */
+    padding: 20px; /* Espaciado alrededor del banner */
+    text-align: center; /* Centrar contenido del banner */
+}
+
+/* Mostrar el banner solo en pantallas grandes */
+@media (min-width: 1024px) {
+    .banner-container {
+        display: block; /* Mostrar en pantallas grandes */
+        max-width: 1200px; /* Limitar el ancho máximo del contenedor */
+        margin: 0 auto; /* Centrar el contenedor */
+    }
+
+    .banner-container img {
+        max-width: 50%; /* Ajustar el tamaño de la imagen al 50% del contenedor */
+        height: auto; /* Ajustar altura automáticamente */
+        max-height: 80px; /* Limitar la altura máxima */
+        object-fit: contain; /* Mantener proporciones sin distorsión */
+    }
 }
