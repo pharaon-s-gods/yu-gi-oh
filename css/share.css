@@ -16,11 +16,18 @@ main {
     border-radius: 15px; /* Radius como el de las tarjetas */
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    text-align: center; /* Centrar texto */
+    max-width: 800px; /* Establecer un ancho máximo para el contenedor */
+    margin: 20px auto 0; /* Centrar el contenedor y agregar espacio arriba */
 }
 
 h1 {
     margin-bottom: 20px;
     color: aliceblue; /* Color de texto de título */
+}
+
+.title-container {
+    margin-bottom: 20px; /* Espacio entre el título y la carta */
 }
 
 h2 {
@@ -29,21 +36,25 @@ h2 {
 }
 
 .card-image-container {
-    text-align: center; /* Centrar la imagen */
     margin-bottom: 20px; /* Espacio entre imagen y formulario */
 }
 
 .card-image-container img {
-    max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+    max-width: 100%; /* Limitar el tamaño de la imagen al 100% del contenedor */
+    height: auto; /* Mantener la proporción */
     border-radius: 8px; /* Radio de borde para la imagen */
+    display: block; /* Asegurar que se comporte como bloque */
+    margin: 0 auto; /* Centrar imagen */
 }
 
 form {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centrar elementos del formulario */
 }
 
-form div {
+.form-group {
+    width: 100%; /* Hacer que el grupo ocupe el 100% del contenedor */
     margin-bottom: 15px;
 }
 
@@ -55,9 +66,16 @@ label {
 input[type="email"],
 input[type="text"],
 textarea {
+    width: 100%; /* Ocupa el 100% del contenedor */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre botones */
+    width: 100%; /* Hacer que el contenedor ocupe el 100% */
 }
 
 button {
@@ -68,6 +86,8 @@ button {
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease; /* Suave transición */
+    flex: 1; /* Hacer que los botones crezcan igual */
+    margin: 0 5px; /* Espacio entre los botones */
 }
 
 button:hover {
