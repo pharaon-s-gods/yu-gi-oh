@@ -37,6 +37,8 @@ h1 {
     border-radius: 5px; /* Bordes redondeados */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
     flex: 0 1 calc(20% - 20px); /* Ocupa 20% del ancho en escritorios para 5 productos por fila */
+    max-width: calc(20% - 20px); /* Asegura que el ancho no supere el 20% */
+    overflow: hidden; /* Oculta el desbordamiento */
 }
 
 .producto img {
@@ -48,12 +50,57 @@ h1 {
     margin: 10px 0; /* Espaciado del título */
     font-size: 1.5rem; /* Tamaño de fuente */
     color: white; /* Color del texto en blanco */
+    white-space: nowrap; /* Mantener el texto en una sola línea */
+    overflow: hidden; /* Ocultar el desbordamiento */
+    text-overflow: ellipsis; /* Mostrar puntos suspensivos si el texto es demasiado largo */
 }
 
 .producto p {
     margin: 5px 0; /* Espaciado del precio */
     font-size: 1.2rem; /* Tamaño de fuente */
     color: #007BFF; /* Color del precio */
+}
+
+/* Estilos para los botones */
+.producto button {
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #007BFF; /* Color de fondo azul */
+    color: white; /* Color del texto en blanco */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    margin: 5px 0; /* Espaciado entre botones */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave para el fondo y transformación */
+    font-size: 1rem; /* Tamaño de fuente */
+}
+
+.producto button:hover {
+    background-color: #0056b3; /* Color del botón al pasar el mouse */
+    transform: scale(1.05); /* Agranda un poco el botón al pasar el mouse */
+}
+
+.producto button:active {
+    transform: scale(0.95); /* Reduce el tamaño al hacer clic */
+}
+
+.cantidad {
+    color: yellow; /* Cambia el color del texto a amarillo */
+}
+
+.btn-mas {
+    background-color: #28a745; /* Color verde para el botón "+" */
+}
+
+.btn-mas:hover {
+    background-color: #218838; /* Color verde más oscuro al pasar el mouse */
+}
+
+.btn-menos, .btn-eliminar {
+    background-color: #dc3545; /* Color rojo para los botones "-" y "Eliminar todo" */
+}
+
+.btn-menos:hover, .btn-eliminar:hover {
+    background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
 }
 
 .pagination {
@@ -88,17 +135,20 @@ h1 {
 @media (max-width: 768px) { /* Para celulares */
     .producto {
         flex: 0 1 calc(100% - 20px); /* 1 producto por fila */
+        max-width: calc(100% - 20px); /* Asegura que el ancho no supere el 100% */
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) { /* Para tablets */
     .producto {
         flex: 0 1 calc(30% - 20px); /* 3 productos por fila */
+        max-width: calc(30% - 20px); /* Asegura que el ancho no supere el 30% */
     }
 }
 
 @media (min-width: 1025px) { /* Para escritorio */
     .producto {
         flex: 0 1 calc(20% - 20px); /* 5 productos por fila */
+        max-width: calc(20% - 20px); /* Asegura que el ancho no supere el 20% */
     }
 }
