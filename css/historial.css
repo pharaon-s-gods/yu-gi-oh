@@ -12,7 +12,7 @@ body {
 }
 
 .main {
-    padding: 20px;
+    padding: 20px; /* Mantener padding en ambas páginas */
     text-align: center;
 }
 
@@ -22,13 +22,28 @@ body {
     justify-content: center;
 }
 
+/* Ajustes para las cartas */
 .carta {
     margin: 10px;
     border: 1px solid #ccc; /* Borde de las cartas */
     border-radius: 5px; /* Bordes redondeados */
     padding: 10px; /* Espaciado interno */
-    background-color: #9c41aa46; /* Fondo suave */
-    color: #333; /* Color del texto dentro de la carta */
+    background-color: #4c2e4b; /* Fondo lila para las cartas */
+    color: white; /* Color del texto dentro de la carta */
+    flex: 0 1 calc(18% - 20px); /* 5 cartas en escritorio */
+}
+
+/* Estilos específicos para diferentes tamaños de pantalla */
+@media (max-width: 1024px) { /* Tablet */
+    .carta {
+        flex: 0 1 calc(30% - 20px); /* 3 cartas en tablet */
+    }
+}
+
+@media (max-width: 768px) { /* Móvil */
+    .carta {
+        flex: 0 1 calc(100% - 20px); /* 1 carta en móvil */
+    }
 }
 
 .carta img {
@@ -39,11 +54,12 @@ body {
 .carta h3 {
     margin: 10px 0 0; /* Espaciado del título */
     font-size: 1.2rem; /* Tamaño de fuente */
-    color: #333; /* Color del texto */
+    color: white; /* Color del texto */
 }
 
 .pagination {
-    margin-top: 20px;
+    margin-top: 20px; /* Margen superior */
+    margin-bottom: 20px; /* Margen inferior */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,4 +81,11 @@ body {
 
 .pagination span {
     font-size: 1rem; /* Tamaño de fuente para la información de la página */
+    color: white; /* Color del texto */
+}
+
+/* Espaciado adicional */
+h1 {
+    margin-bottom: 20px; /* Espacio abajo del título */
+    color: white; /* Color del título */
 }
