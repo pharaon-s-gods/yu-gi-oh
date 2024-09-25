@@ -120,13 +120,23 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener("click", async (e) => {
                 e.preventDefault(); // Evitar el comportamiento predeterminado
                 const id = e.target.dataset.id;
+
                 if (idsEnCarrito[id] > 1) {
                     idsEnCarrito[id] -= 1; // Disminuir cantidad
                 } else {
                     delete idsEnCarrito[id]; // Eliminar si la cantidad llega a 0
                 }
+                
                 localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
-                mostrarProductos(); // Mostrar los productos después de actualizar
+                
+                // Solo actualizar el elemento específico
+                const cantidadElement = carritoContainer.querySelector(`#cantidad-${id}`);
+                if (cantidadElement) {
+                    cantidadElement.textContent = idsEnCarrito[id] || 0; // Actualiza la cantidad en la UI
+                }
+
+                // Actualizar botones y página, pero no recargar toda la lista
+                actualizarBotones();
             });
         });
 
@@ -136,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const id = e.target.dataset.id;
                 delete idsEnCarrito[id]; // Eliminar todas las instancias de esta carta
                 localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
+                
                 // Evitar la recarga visual
                 carritoContainer.style.opacity = '0'; // Hacer el contenedor invisible
                 await mostrarProductos(); // Volver a mostrar los productos después de eliminar
