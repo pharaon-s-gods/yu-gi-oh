@@ -102,6 +102,6 @@ h1 {
 /* Escritorio */
 @media (min-width: 1024px) {
     .carta {
-        flex: 0 1 calc(18% - 20px); /* 5 cartas en escritorio */
+        flex: 0 1 calc(20% - 20px); /* 5 cartas en escritorio */
     }
 }
