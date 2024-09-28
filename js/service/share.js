@@ -30,27 +30,38 @@ fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${shareId}`)
     })
     .catch(error => console.error('Error fetching card data:', error));
 
-function isValidEmail(email) { // Valida el formato de la direccion de correo
+function isValidEmail(email) { // Valida el formato de la dirección de correo
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     return emailPattern.test(email);
 }
 
 document.getElementById('share-form').addEventListener('submit', function (event) {
-    event.preventDefault(); 
-    const senderEmail = document.getElementById('sender-email').value;
+    event.preventDefault();
     const recipientEmail = document.getElementById('recipient-email').value;
-    const message = document.getElementById('message').value;
+    const message = document.getElementById('message').value.trim(); // Mensaje opcional
 
-    if (!senderEmail || !recipientEmail) {
-        alert('Por favor, completá todos los campos requeridos.');
+    if (!recipientEmail) {
+        alert('Por favor, completa el destinatario.');
         return;
     }
 
-    if (!isValidEmail(senderEmail) || !isValidEmail(recipientEmail)) {
-        alert('Por favor, introducí un correo electronico valido.');
+    if (!isValidEmail(recipientEmail)) {
+        alert('Por favor, introducí un correo electrónico válido.');
         return;
     }
 
-    const mailtoLink = `mailto:${recipientEmail}?subject=¡Mirá esta carta de Yu-Gi-Oh!&body=${message} (Carta: ${cardTitleElement.textContent})`;
+    // URL de la imagen de la carta
+    const cardImageUrl = cardImageElement.src;
+
+    // Crear el cuerpo del mensaje
+    let bodyMessage;
+    if (message) {
+        bodyMessage = `${message}\n\nAcá está la imagen:\n${cardImageUrl}\n\nCompartido de Yu-Gi-Oh! Store: https://yugiohstore.com`;
+    } else {
+        bodyMessage = `Te comparto esta carta:\n\nAcá está la imagen:\n${cardImageUrl}\n\nCompartido de Yu-Gi-Oh! Store: https://yugiohstore.com`;
+    }
+
+    const mailtoLink = `mailto:${recipientEmail}?subject=Te comparto esta carta de Yu-Gi-Oh!&body=${encodeURIComponent(bodyMessage)}`;
+
     window.location.href = mailtoLink; 
 });
