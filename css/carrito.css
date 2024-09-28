@@ -60,7 +60,7 @@ h1 {
     white-space: normal; /* Permitir que el texto se divida en varias líneas */
     text-overflow: clip; /* No muestra puntos suspensivos */
     background-color: rgba(255, 255, 255, 0.1); /* Fondo sutil */
-    border-radius: 3px; /* Opcional: redondear las esquinas */
+    border-radius: 3px; /* Redondear las esquinas */
 }
 
 .producto p {
