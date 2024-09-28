@@ -140,21 +140,21 @@ h1 {
 }
 
 /* Responsividad */
-@media (max-width: 768px) { /* Para pantallas moviles */
+@media (max-width: 767px) { /* Para pantallas moviles */
     .producto {
         flex: 0 1 calc(100% - 20px); /* Un producto por fila en moviles */
         max-width: calc(100% - 20px); /* Limita el ancho al 100% */
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) { /* Para pantallas medianas */
+@media (min-width: 768px) and (max-width: 1023px) { /* Para pantallas medianas */
     .producto {
         flex: 0 1 calc(30% - 20px); /* Tres productos por fila en tablets */
         max-width: calc(30% - 20px); /* Limita el ancho al 30% */
     }
 }
 
-@media (min-width: 1025px) { /* Para pantallas grandes */
+@media (min-width: 1024px) { /* Para pantallas grandes */
     .producto {
         flex: 0 1 calc(20% - 20px); /* Cinco productos por fila en escritorio */
         max-width: calc(20% - 20px); /* Limita el ancho al 20% */
