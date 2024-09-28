@@ -1,95 +1,95 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; /* Incluye padding y border en el ancho total del elemento */
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #2d2727; /* Mismo fondo oscuro que en index */
-    color: #333; /* Color de texto similar */
-    padding: 20px;
+    font-family: 'Arial', sans-serif; 
+    background-color: #2d2727; 
+    color: #333; 
+    padding: 20px; 
 }
 
 main {
-    background-color: rgba(156, 65, 170, 0.9); /* Fondo de tarjetas similar */
-    border-radius: 15px; /* Radius como el de las tarjetas */
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    text-align: center; /* Centrar texto */
-    max-width: 800px; /* Establecer un ancho máximo para el contenedor */
-    margin: 20px auto 0; /* Centrar el contenedor y agregar espacio arriba */
+    background-color: rgba(156, 65, 170, 0.9); /* Fondo semitransparente con color */
+    border-radius: 15px; 
+    padding: 20px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra difusa */
+    text-align: center; 
+    max-width: 800px; 
+    margin: 20px auto 0; 
 }
 
 h1 {
-    margin-bottom: 20px;
-    color: aliceblue; /* Color de texto de título */
+    margin-bottom: 20px; 
+    color: aliceblue; 
 }
 
 .title-container {
-    margin-bottom: 20px; /* Espacio entre el título y la carta */
+    margin-bottom: 20px; 
 }
 
 h2 {
-    margin: 10px 0; /* Espaciado para el título de la carta */
-    color: aliceblue; /* Color similar para la consistencia */
+    margin: 10px 0; 
+    color: aliceblue; 
 }
 
 .card-image-container {
-    margin-bottom: 20px; /* Espacio entre imagen y formulario */
+    margin-bottom: 20px; 
 }
 
 .card-image-container img {
-    max-width: 100%; /* Limitar el tamaño de la imagen al 100% del contenedor */
-    height: auto; /* Mantener la proporción */
-    border-radius: 8px; /* Radio de borde para la imagen */
-    display: block; /* Asegurar que se comporte como bloque */
-    margin: 0 auto; /* Centrar imagen */
+    max-width: 100%; 
+    height: auto; 
+    border-radius: 8px; 
+    display: block; 
+    margin: 0 auto; 
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrar elementos del formulario */
+    display: flex; 
+    flex-direction: column; /* Disposicion vertical de los elementos del formulario */
+    align-items: center; 
 }
 
 .form-group {
-    width: 100%; /* Hacer que el grupo ocupe el 100% del contenedor */
-    margin-bottom: 15px;
+    width: 100%; 
+    margin-bottom: 15px; 
 }
 
 label {
-    margin-bottom: 5px;
-    color: aliceblue; /* Asegura que las etiquetas sean visibles */
+    margin-bottom: 5px; 
+    color: aliceblue; 
 }
 
 input[type="email"],
 input[type="text"],
 textarea {
-    width: 100%; /* Ocupa el 100% del contenedor */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
 }
 
 .button-container {
-    display: flex;
-    justify-content: space-between; /* Espacio entre botones */
-    width: 100%; /* Hacer que el contenedor ocupe el 100% */
+    display: flex; 
+    justify-content: space-between; /* Distribuye espacio entre botones */
+    width: 100%; 
 }
 
 button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007BFF; /* Mismo color de botón */
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Suave transición */
-    flex: 1; /* Hacer que los botones crezcan igual */
-    margin: 0 5px; /* Espacio entre los botones */
+    padding: 10px; 
+    border: none; 
+    border-radius: 4px; 
+    background-color: #007BFF; 
+    color: white; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; /* Transicion suave para el color de fondo */
+    flex: 1; /* Permite que los botones crezcan igualmente */
+    margin: 0 5px; 
 }
 
 button:hover {
-    background-color: #0056b3; /* Color al pasar el mouse */
+    background-color: #0056b3; 
 }

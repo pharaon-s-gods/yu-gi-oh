@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ajusta el modelo de caja, incluyendo padding y border en el ancho total */
     font-family: 'Arial', sans-serif;
 }
 
@@ -12,143 +12,143 @@ body {
 }
 
 .main {
-    text-align: center; /* Centrar el contenido del main */
-    padding: 20px; /* Asegurarse que el padding sea igual en ambas páginas */
+    text-align: center;
+    padding: 20px;
 }
 
 h1 {
-    color: white; /* Color blanco para el título */
-    margin-bottom: 20px; /* Espacio entre el título y las cartas */
+    color: white;
+    margin-bottom: 20px;
 }
 
 #carrito {
-    margin-bottom: 20px; /* Espacio inferior del carrito */
+    margin-bottom: 20px;
     display: flex;
-    flex-wrap: wrap; /* Permitir que los productos se ajusten */
-    justify-content: center; /* Centrar los productos */
-    background-color: #2d2727; /* Fondo del contenedor principal */
+    flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente linea si no hay espacio */
+    justify-content: center;
+    background-color: #2d2727;
 }
 
 .producto {
-    background-color: #4c2e4b; /* Fondo lila para productos */
-    border: 1px solid #ccc; /* Borde gris */
-    padding: 10px; /* Espaciado interno */
-    margin: 10px; /* Espaciado entre productos */
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    flex: 0 1 calc(20% - 20px); /* Ocupa 20% del ancho en escritorios para 5 productos por fila */
-    max-width: calc(20% - 20px); /* Asegura que el ancho no supere el 20% */
-    overflow: hidden; /* Oculta el desbordamiento */
+    background-color: #4c2e4b;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Agrega sombra al contenedor */
+    flex: 0 1 calc(20% - 20px); /* Permite que el elemento ocupe el 20% menos un margen */
+    max-width: calc(20% - 20px); /* Limita el ancho maximo */
+    overflow: hidden; /* Oculta el contenido que se desborda */
 }
 
 .producto img {
-    width: 100%; /* Ajusta imagen al contenedor */
-    border-radius: 5px 5px 0 0; /* Bordes redondeados en la parte superior */
+    width: 100%;
+    border-radius: 5px 5px 0 0; /* Redondea solo la parte superior de la imagen */
 }
 
 .producto h2 {
-    margin: 10px 0; /* Espaciado del título */
-    font-size: 1.5rem; /* Tamaño de fuente */
-    color: white; /* Color del texto en blanco */
-    white-space: nowrap; /* Mantener el texto en una sola línea */
-    overflow: hidden; /* Ocultar el desbordamiento */
-    text-overflow: ellipsis; /* Mostrar puntos suspensivos si el texto es demasiado largo */
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: white;
+    white-space: nowrap; /* Evita que el texto se divida en varias lineas */
+    overflow: hidden; /* Oculta el contenido desbordado */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos para el texto que se desborda */
 }
 
 .producto p {
-    margin: 5px 0; /* Espaciado del precio */
-    font-size: 1.2rem; /* Tamaño de fuente */
-    color: #007BFF; /* Color del precio */
+    margin: 5px 0;
+    font-size: 1.2rem;
+    color: #007BFF;
 }
 
 /* Estilos para los botones */
 .producto button {
-    padding: 10px 15px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    background-color: #007BFF; /* Color de fondo azul */
-    color: white; /* Color del texto en blanco */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    margin: 5px 0; /* Espaciado entre botones */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave para el fondo y transformación */
-    font-size: 1rem; /* Tamaño de fuente */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el boton */
+    margin: 5px 0;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Suaviza la transicion del fondo y la transformacion */
+    font-size: 1rem;
 }
 
 .producto button:hover {
-    background-color: #0056b3; /* Color del botón al pasar el mouse */
-    transform: scale(1.05); /* Agranda un poco el botón al pasar el mouse */
+    background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+    transform: scale(1.05); /* Aumenta el tamaño del botón al pasar el mouse */
 }
 
 .producto button:active {
-    transform: scale(0.95); /* Reduce el tamaño al hacer clic */
+    transform: scale(0.95); /* Disminuye el tamaño al hacer clic */
 }
 
 .cantidad {
-    color: yellow; /* Cambia el color del texto a amarillo */
+    color: yellow;
 }
 
 .btn-mas {
-    background-color: #28a745; /* Color verde para el botón "+" */
+    background-color: #28a745;
 }
 
 .btn-mas:hover {
-    background-color: #218838; /* Color verde más oscuro al pasar el mouse */
+    background-color: #218838;
 }
 
 .btn-menos, .btn-eliminar {
-    background-color: #dc3545; /* Color rojo para los botones "-" y "Eliminar todo" */
+    background-color: #dc3545;
 }
 
 .btn-menos:hover, .btn-eliminar:hover {
-    background-color: #c82333; /* Color rojo más oscuro al pasar el mouse */
+    background-color: #c82333;
 }
 
 .pagination {
     display: flex;
-    justify-content: center; /* Centra los botones de paginación */
-    align-items: center; /* Centra verticalmente */
-    margin-top: 20px; /* Margen superior */
-    margin-bottom: 20px; /* Espacio debajo de la paginación */
-    color: white; /* Color del texto de la paginación */
+    justify-content: center; /* Centra los elementos de la paginacion */
+    align-items: center; /* Alinea verticalmente los elementos */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
 }
 
 .pagination button {
-    padding: 10px 15px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    border-radius: 4px; /* Bordes redondeados */
-    background-color: #007BFF; /* Color del botón */
-    color: white; /* Color del texto del botón */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    margin: 0 10px; /* Espaciado entre botones */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px; /* Redondea los bordes de los botones de paginacion */
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    margin: 0 10px; /* Espacio horizontal entre botones */
 }
 
 .pagination button:hover {
-    background-color: #0056b3; /* Color del botón al pasar el mouse */
+    background-color: #0056b3; /* Cambia el color al pasar el mouse */
 }
 
 .pagination span {
-    font-size: 1rem; /* Tamaño de fuente para la información de la página */
-    color: white; /* Color del texto */
+    font-size: 1rem;
+    color: white;
 }
 
 /* Responsividad */
-@media (max-width: 768px) { /* Para celulares */
+@media (max-width: 768px) { /* Para pantallas moviles */
     .producto {
-        flex: 0 1 calc(100% - 20px); /* 1 producto por fila */
-        max-width: calc(100% - 20px); /* Asegura que el ancho no supere el 100% */
+        flex: 0 1 calc(100% - 20px); /* Un producto por fila en moviles */
+        max-width: calc(100% - 20px); /* Limita el ancho al 100% */
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) { /* Para tablets */
+@media (min-width: 769px) and (max-width: 1024px) { /* Para pantallas medianas */
     .producto {
-        flex: 0 1 calc(30% - 20px); /* 3 productos por fila */
-        max-width: calc(30% - 20px); /* Asegura que el ancho no supere el 30% */
+        flex: 0 1 calc(30% - 20px); /* Tres productos por fila en tablets */
+        max-width: calc(30% - 20px); /* Limita el ancho al 30% */
     }
 }
 
-@media (min-width: 1025px) { /* Para escritorio */
+@media (min-width: 1025px) { /* Para pantallas grandes */
     .producto {
-        flex: 0 1 calc(20% - 20px); /* 5 productos por fila */
-        max-width: calc(20% - 20px); /* Asegura que el ancho no supere el 20% */
+        flex: 0 1 calc(20% - 20px); /* Cinco productos por fila en escritorio */
+        max-width: calc(20% - 20px); /* Limita el ancho al 20% */
     }
 }
