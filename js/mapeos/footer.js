@@ -11,7 +11,7 @@ export async function footer() {
     
             <!-- Redes sociales -->
             <div class="footer-section">
-                <h4>Síguenos</h4>
+                <h4>Seguinos</h4>
                 <a href="#">Facebook</a> | 
                 <a href="#">Twitter</a> | 
                 <a href="#">Instagram</a>

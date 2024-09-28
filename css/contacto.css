@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Controla el modelo de caja */
     font-family: 'Arial', sans-serif;
 }
 
@@ -13,28 +13,28 @@ body {
 
 .contact-container {
     max-width: 1200px;
-    margin: 40px auto; /* Agregado para mantener consistencia con el diseño de index */
+    margin: 40px auto; /* Centrar el contenedor */
     padding: 20px;
-    background-color: white; /* Fondo blanco para el contenedor */
+    background-color: white;
     border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 h1 {
     margin-bottom: 20px;
-    color: #333; /* Color del encabezado */
+    color: #333;
 }
 
 .contact-info {
     margin-bottom: 30px;
     font-size: 18px;
-    line-height: 1.8;
-    color: #333; /* Color del texto */
+    line-height: 1.8; /* Altura de linea personalizada */
+    color: #333;
 }
 
 .map-container {
-    display: flex;
-    justify-content: center;
+    display: flex; /* Flexbox para el layout */
+    justify-content: center; /* Centrar contenido */
     margin-top: 20px;
 }
 
@@ -42,6 +42,6 @@ h1 {
     width: 100%;
     max-width: 800px;
     height: 450px;
-    border: 2px solid #3498db; /* Borde de color similar al del index */
-    border-radius: 4px; /* Bordes redondeados para el iframe */
+    border: 2px solid #3498db;
+    border-radius: 4px; /* Bordes redondeados */
 }
