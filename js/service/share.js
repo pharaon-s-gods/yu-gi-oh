@@ -42,15 +42,15 @@ document.getElementById('share-form').addEventListener('submit', function (event
     const message = document.getElementById('message').value;
 
     if (!senderEmail || !recipientEmail) {
-        alert('Por favor, completa todos los campos requeridos.');
+        alert('Por favor, completá todos los campos requeridos.');
         return;
     }
 
     if (!isValidEmail(senderEmail) || !isValidEmail(recipientEmail)) {
-        alert('Por favor, introduce un correo electronico valido.');
+        alert('Por favor, introducí un correo electronico valido.');
         return;
     }
 
-    const mailtoLink = `mailto:${recipientEmail}?subject=¡Mira esta carta de Yu-Gi-Oh!&body=${message} (Carta: ${cardTitleElement.textContent})`;
+    const mailtoLink = `mailto:${recipientEmail}?subject=¡Mirá esta carta de Yu-Gi-Oh!&body=${message} (Carta: ${cardTitleElement.textContent})`;
     window.location.href = mailtoLink; 
 });
