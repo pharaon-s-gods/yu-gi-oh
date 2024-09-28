@@ -36,8 +36,8 @@ h1 {
     margin: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Agrega sombra al contenedor */
-    flex: 0 1 calc(20% - 20px); /* Permite que el elemento ocupe el 20% menos un margen */
-    max-width: calc(20% - 20px); /* Limita el ancho maximo */
+    flex: 0 1 calc(100% - 20px); /* Un producto por fila en moviles */
+    max-width: calc(100% - 20px); /* Limita el ancho al 100% */
     overflow: hidden; /* Oculta el contenido que se desborda */
 }
 
@@ -143,22 +143,16 @@ h1 {
     color: white;
 }
 
-/* Responsividad */
-@media (max-width: 767px) { /* Para pantallas moviles */
-    .producto {
-        flex: 0 1 calc(100% - 20px); /* Un producto por fila en moviles */
-        max-width: calc(100% - 20px); /* Limita el ancho al 100% */
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) { /* Para pantallas medianas */
+/* Para pantallas medianas */
+@media (min-width: 768px) and (max-width: 1023px) { 
     .producto {
         flex: 0 1 calc(30% - 20px); /* Tres productos por fila en tablets */
         max-width: calc(30% - 20px); /* Limita el ancho al 30% */
     }
 }
 
-@media (min-width: 1024px) { /* Para pantallas grandes */
+/* Para pantallas grandes */
+@media (min-width: 1024px) { 
     .producto {
         flex: 0 1 calc(20% - 20px); /* Cinco productos por fila en escritorio */
         max-width: calc(20% - 20px); /* Limita el ancho al 20% */

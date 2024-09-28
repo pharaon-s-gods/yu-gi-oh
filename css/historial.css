@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho total del elemento */
+    box-sizing: border-box;
     font-family: 'Arial', sans-serif;
 }
 
@@ -12,79 +12,79 @@ body {
 }
 
 .main {
-    padding: 20px; /* Mantener padding en ambas paginas */
-    text-align: center; 
+    padding: 20px;
+    text-align: center;
 }
 
 .cartas-container {
-    display: flex; /* Utiliza flexbox para el contenedor de cartas */
-    flex-wrap: wrap; /* Permite que los elementos se ajusten a varias lineas */
-    justify-content: center; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .carta {
     margin: 10px;
-    border: 1px solid #ccc; 
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 10px; 
-    background-color: #4c2e4b; 
-    color: white; 
-    flex: 0 1 calc(18% - 20px); /* 5 cartas en escritorio */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #4c2e4b;
+    color: white;
+    flex: 0 1 calc(100% - 20px); /* 1 carta en movil */
 }
 
-/* Estilos especificos para diferentes tamaños de pantalla */
-@media (max-width: 1023px) { /* Tablet */
+.carta img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+.carta h3 {
+    margin: 10px 0 0;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination button {
+    margin: 0 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination span {
+    font-size: 1rem;
+    color: white;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
     .carta {
         flex: 0 1 calc(30% - 20px); /* 3 cartas en tablet */
     }
 }
 
-@media (max-width: 767px) { /* Movil */
+/* Escritorio */
+@media (min-width: 1024px) {
     .carta {
-        flex: 0 1 calc(100% - 20px); /* 1 carta en movil */
+        flex: 0 1 calc(18% - 20px); /* 5 cartas en escritorio */
     }
-}
-
-.carta img {
-    width: 100%; 
-    border-radius: 5px 5px 0 0; /* Bordes redondeados en la parte superior */
-}
-
-.carta h3 {
-    margin: 10px 0 0; 
-    font-size: 1.2rem; /* Tamaño de fuente */
-    color: white; 
-}
-
-.pagination {
-    margin-top: 20px; 
-    margin-bottom: 20px; 
-    display: flex; /* Utiliza flexbox para la paginacion */
-    justify-content: center; 
-    align-items: center; /* Centra verticalmente los elementos dentro de la paginacion */
-}
-
-.pagination button {
-    margin: 0 10px; 
-    padding: 10px 15px; 
-    border: none; 
-    border-radius: 4px; /* Bordes redondeados para los botones */
-    background-color: #007BFF; 
-    color: white; 
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-}
-
-.pagination button:hover {
-    background-color: #0056b3; 
-}
-
-.pagination span {
-    font-size: 1rem; 
-    color: white; 
-}
-
-/* Espaciado adicional */
-h1 {
-    margin-bottom: 20px; 
-    color: white; 
 }
