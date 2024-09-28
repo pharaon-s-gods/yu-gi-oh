@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 cartaElement.className = "carta"; // Asigna clase
                 cartaElement.innerHTML = `
                     <img src="${carta.card_images[0].image_url}" alt="${carta.name}">
-                    <h3>${carta.name}</h3>
+                    <h2>${carta.name}</h2>
                     <p>Tipo: ${carta.type}</p>
                     <p>Raza: ${carta.race}</p>
                 `; // Agrega contenido HTML
