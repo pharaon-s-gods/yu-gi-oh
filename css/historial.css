@@ -23,13 +23,15 @@ body {
 }
 
 .carta {
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
     background-color: #4c2e4b;
-    color: white;
-    flex: 0 1 calc(100% - 20px); /* 1 carta en movil */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Agrega sombra al contenedor */
+    flex: 0 1 calc(100% - 20px); /* Un producto por fila en moviles */
+    max-width: calc(100% - 20px); /* Limita el ancho al 100% */
+    overflow: hidden; /* Oculta el contenido que se desborda */
 }
 
 .carta img {
@@ -37,9 +39,24 @@ body {
     border-radius: 5px 5px 0 0;
 }
 
-.carta h3 {
-    margin: 10px 0 0;
-    font-size: 1.2rem;
+.carta h2 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: white;
+    overflow: hidden; /* Mantener oculto el texto que desborda */
+    white-space: nowrap; /* Mantener en una línea */
+    text-overflow: ellipsis; /* Puntos suspensivos */
+}
+
+.carta h2:hover {
+    overflow: visible; /* Permitir ver el texto completo al hacer hover */
+    white-space: normal; /* Permitir que el texto se divida en varias líneas */
+    text-overflow: clip; /* No muestra puntos suspensivos */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo sutil */
+    border-radius: 3px; /* Opcional: redondear las esquinas */
+}
+
+.carta p {
     color: white;
 }
 
