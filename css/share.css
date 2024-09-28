@@ -21,6 +21,35 @@ main {
     margin: 20px auto 0; 
 }
 
+main {
+    background-color: rgba(156, 65, 170, 0.9); /* Fondo semitransparente con color */
+    border-radius: 15px; 
+    padding: 20px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra difusa */
+    text-align: center; 
+    max-width: 100%; /* Ancho completo en moviles */
+    margin: 20px auto; /* Centrar en la pagina */
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    main {
+        max-width: 70%;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 1024px) {
+    main {
+        max-width: 50%;
+    }
+}
+
+.card-container {
+    width: 100%;
+    max-width: 800px;
+}
+
 h1 {
     margin-bottom: 20px; 
     color: aliceblue; 
@@ -44,7 +73,8 @@ h2 {
     height: auto; 
     border-radius: 8px; 
     display: block; 
-    margin: 0 auto; 
+    margin: 0 auto;     
+    align-items: center;
 }
 
 form {
