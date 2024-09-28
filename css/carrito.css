@@ -50,9 +50,17 @@ h1 {
     margin: 10px 0;
     font-size: 1.5rem;
     color: white;
-    white-space: nowrap; /* Evita que el texto se divida en varias lineas */
-    overflow: hidden; /* Oculta el contenido desbordado */
-    text-overflow: ellipsis; /* Muestra puntos suspensivos para el texto que se desborda */
+    overflow: hidden; /* Mantener oculto el texto que desborda */
+    white-space: nowrap; /* Mantener en una línea */
+    text-overflow: ellipsis; /* Puntos suspensivos */
+}
+
+.producto h2:hover {
+    overflow: visible; /* Permitir ver el texto completo al hacer hover */
+    white-space: normal; /* Permitir que el texto se divida en varias líneas */
+    text-overflow: clip; /* No muestra puntos suspensivos */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo sutil */
+    border-radius: 3px; /* Opcional: redondear las esquinas */
 }
 
 .producto p {
