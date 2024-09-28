@@ -43,5 +43,19 @@ h1 {
     max-width: 800px;
     height: 450px;
     border: 2px solid #3498db;
-    border-radius: 4px; /* Bordes redondeados */
+    border-radius: 4px;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .contact-container {
+        width: 70%;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 1024px) {
+    .contact-container {
+        width: 50%;
+    }
 }
