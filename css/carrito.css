@@ -21,7 +21,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-#carrito {
+.cartas-container {
     margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente linea si no hay espacio */
