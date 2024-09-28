@@ -43,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 cartaElement.innerHTML = `
                     <img src="${carta.card_images[0].image_url}" alt="${carta.name}">
                     <h3>${carta.name}</h3>
+                    <p>Tipo: ${carta.type}</p>
+                    <p>Raza: ${carta.race}</p>
                 `; // Agrega contenido HTML
                 cartasHistorialContainer.appendChild(cartaElement); // Agrega la carta al contenedor
             }

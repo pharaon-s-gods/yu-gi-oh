@@ -66,7 +66,11 @@ h1 {
 .producto p {
     margin: 5px 0;
     font-size: 1.2rem;
-    color: #007BFF;
+    color: white;
+}
+
+.producto p.cantidad {
+    color: yellow;
 }
 
 /* Estilos para los botones */
