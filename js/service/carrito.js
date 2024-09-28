@@ -80,18 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (carta && div) {
             div.innerHTML = `
-                <div class="producto-imagen-titulo">
-                    <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
-                    <h2>${carta.name}</h2>
-                </div>
-                <div class="producto-cantidad-botones">
-                    <p class="cantidad" style="color: yellow;">Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
-                    <button class="btn-mas" data-id="${carta.id}">+</button>
-                    <button class="btn-menos" data-id="${carta.id}">-</button>
-                    <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
-                </div>
-            `;
-
+            <div class="producto-imagen-titulo">
+                <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
+                <h2 title="${carta.name}">${carta.name}</h2> <!-- Usar title para tooltip -->
+            </div>
+            <div class="producto-cantidad-botones">
+                <p class="cantidad" style="color: yellow;">Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
+                <button class="btn-mas" data-id="${carta.id}">+</button>
+                <button class="btn-menos" data-id="${carta.id}">-</button>
+                <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
+            </div>
+        `;
             agregarEventos(); 
         }
     }
