@@ -81,6 +81,7 @@ body {
 
 .button-container {
     margin: 10px 0 30px;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
