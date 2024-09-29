@@ -79,17 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo(0, scrollPosition);
     }
 
-    // Actualiza una carta en el carrito
-    async function actualizarCarta(id) {
-        const carta = await obtenerCartaPorId(id); 
-        const cantidad = idsEnCarrito[id];
-        const div = carritoContainer.querySelector(`.producto[data-id="${id}"]`); 
-
-        if (carta && div) {
-            const cantidadElemento = div.querySelector(`span#cantidad-${carta.id}`);
-            if (cantidadElemento) {
-                cantidadElemento.textContent = cantidad;
-            }
+    // Actualiza el innerHTML de la cantidad en el DOM
+    async function actualizarCantidadEnDOM(id) {
+        const cantidadElemento = carritoContainer.querySelector(`span#cantidad-${id}`);
+        if (cantidadElemento) {
+            cantidadElemento.textContent = idsEnCarrito[id];
         }
     }
 
@@ -105,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const id = e.target.dataset.id;
                 idsEnCarrito[id] += 1; 
                 localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito)); 
-                await actualizarCarta(id); 
+                await actualizarCantidadEnDOM(id); 
             });
         });
 
@@ -113,23 +107,24 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener("click", async (e) => {
                 e.preventDefault();
                 const id = e.target.dataset.id;
-
+        
                 // Guarda la posicion del scroll
                 const scrollPosition = window.scrollY;
-
+        
                 if (idsEnCarrito[id] > 1) {
                     idsEnCarrito[id] -= 1; 
+                    localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
+                    await actualizarCantidadEnDOM(id);
                 } else {
                     delete idsEnCarrito[id]; 
+                    localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
+                    await mostrarProductos(); 
                 }
-
-                localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
-                await mostrarProductos(); 
-
-                // Restaura la posición del scroll
+        
+                // Restaura la posicion del scroll
                 window.scrollTo(0, scrollPosition);
             });
-        });
+        });        
 
         btnEliminar.forEach(btn => {
             btn.addEventListener("click", async (e) => {
