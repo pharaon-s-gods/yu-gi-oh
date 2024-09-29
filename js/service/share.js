@@ -21,7 +21,7 @@ fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${shareId}`)
     .then(data => {
         if (data.data && data.data.length > 0) {
             const carta = data.data[0]; 
-            cardTitleElement.textContent = carta.name; 
+            cardTitleElement.value = carta.name; // Asignar el nombre de la carta al campo
             cardImageElement.src = carta.card_images[0].image_url; 
             cardImageElement.style.display = 'block'; 
         } else {
@@ -30,23 +30,24 @@ fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${shareId}`)
     })
     .catch(error => console.error('Error fetching card data:', error));
 
-function isValidEmail(email) { // Valida el formato de la dirección de correo
+function isValidEmail(email) { // Valida el correo
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     return emailPattern.test(email);
 }
 
 document.getElementById('share-form').addEventListener('submit', function (event) {
     event.preventDefault();
+    const senderEmail = document.getElementById('sender-email').value;
     const recipientEmail = document.getElementById('recipient-email').value;
     const message = document.getElementById('message').value.trim(); // Mensaje opcional
 
-    if (!recipientEmail) {
-        alert('Por favor, completa el destinatario.');
+    if (!senderEmail || !recipientEmail) {
+        alert('Por favor, completá ambos correos.');
         return;
     }
 
-    if (!isValidEmail(recipientEmail)) {
-        alert('Por favor, introducí un correo electrónico válido.');
+    if (!isValidEmail(senderEmail) || !isValidEmail(recipientEmail)) {
+        alert('Por favor, introducí correos electrónicos válido.');
         return;
     }
 
@@ -56,9 +57,9 @@ document.getElementById('share-form').addEventListener('submit', function (event
     // Crear el cuerpo del mensaje
     let bodyMessage;
     if (message) {
-        bodyMessage = `${message}\n\nAcá está la imagen:\n${cardImageUrl}\n\nCompartido de Yu-Gi-Oh! Store: https://yugiohstore.com`;
+        bodyMessage = `${message}\n\nAcá está la imagen:\n${cardImageUrl}\n\nCompartido por: ${senderEmail}\n\nCompartido de Yu-Gi-Oh! Store: https://yugiohstore.com`;
     } else {
-        bodyMessage = `Te comparto esta carta:\n\nAcá está la imagen:\n${cardImageUrl}\n\nCompartido de Yu-Gi-Oh! Store: https://yugiohstore.com`;
+        bodyMessage = `Te comparto una carta:\n\nAcá está la imagen:\n${cardImageUrl}\nCompartido por: ${senderEmail}\n\nCompartido de Yu-Gi-Oh! Store: https://yugiohstore.com`;
     }
 
     const mailtoLink = `mailto:${recipientEmail}?subject=Te comparto esta carta de Yu-Gi-Oh!&body=${encodeURIComponent(bodyMessage)}`;

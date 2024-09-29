@@ -16,16 +16,19 @@
         <h1>Compartir carta</h1>
     
         <div class="share-container">
-            <div class="title-container">
-                <label for="card-title">Título de la carta:</label>
-                <h2 id="card-title"></h2>
-            </div>
-    
             <div class="card-image-container">
                 <img id="card-image" src="" alt="Imagen de la Carta" style="display: none;">
-            </div>
+            </div>            
     
-            <form id="share-form">
+            <form id="share-form">       
+                <div class="form-group">
+                    <label for="card-title">Título de la carta:</label>
+                    <input type="text" id="card-title" readonly>
+                </div>         
+                <div class="form-group">
+                    <label for="sender-email">Correo emisor:</label>
+                    <input type="email" id="sender-email" required>
+                </div>
                 <div class="form-group">
                     <label for="recipient-email">Correo destino:</label>
                     <input type="email" id="recipient-email" required>
@@ -33,7 +36,7 @@
                 <div class="form-group">
                     <label for="message">Mensaje (opcional):</label>
                     <textarea id="message" rows="4"></textarea>
-                </div>
+                </div>                
                 <div class="button-container">
                     <button type="submit">Enviar mail</button>
                     <button type="button" onclick="window.history.back()">Cancelar</button>
@@ -42,7 +45,6 @@
         </div>
     </main>
     
-
     <footer id="footer"></footer>
 
     <script type="module" src="../js/service/share.js"></script>
