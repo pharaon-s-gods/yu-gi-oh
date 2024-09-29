@@ -4,47 +4,105 @@
     padding: 15px 0px 20px 0px; 
     width: 100vw; 
     display: flex; 
-    justify-content: center; 
+    justify-content: space-around; 
     align-items: center; 
-    flex-direction: column; 
 }
 
 .logo {
-    width: 90vw; 
+    width: 40vw; 
     display: flex; 
-    justify-content: center; 
+    justify-content: center;    
 }
 
 .logo img {
-    max-width: 200px; 
+    width: 100%;
+    object-fit: cover; /* Ajusta la imagen al contenedor manteniendo la proporción */
 }
 
 .enlacesHeader {
-    width: auto; 
-    max-width: 400px; 
+    width: 50%; 
 }
 
 .enlacesHeader ul {
     display: flex; 
     justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .enlacesHeader ul li {
     display: flex; 
     align-items: center; 
     text-align: center; 
-    width: 90px; 
 }
 
 .enlacesHeader ul li a {
     color: white; 
     text-decoration: none; 
-    font-size: 16px; 
     padding: 10px; 
-    display: block; 
 }
 
 .enlacesHeader ul li a:hover {
     background-color: #555; 
     border-radius: 5px; /* Redondea los bordes del fondo al pasar el mouse */
+}
+
+
+/* Para móviles en orientación vertical - hasta 480px */
+@media (max-width: 480px) {
+    /* Estilos para móviles en orientación vertical */ 
+    .header {
+        justify-content: center;
+        flex-direction: column; 
+    }
+    
+    .logo {
+        width: 70vw;
+    }
+
+    .enlacesHeader ul {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .enlacesHeader ul li {
+        justify-content: center;
+        font-size: medium;
+    }
+}
+
+/* Para móviles en orientación horizontal - hasta 768px */ 
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Estilos para móviles en orientación horizontal */
+    .enlacesHeader ul li {
+        font-size: large;
+    }
+}
+
+/* Para tablets en orientación vertical - hasta 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Estilos para tablets en orientación vertical */
+    .enlacesHeader ul li {
+        font-size: large;
+    }
+}
+
+/* Para tablets en orientación horizontal o escritorios normales - hasta 1200px */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    /* Estilos para tablets en orientación horizontal o escritorios normales */
+    .enlacesHeader ul li {
+        font-size: large;
+    }
+}
+
+/* Para escritorios grandes - desde 1200px */ 
+@media (min-width: 1201px){
+    .enlacesHeader ul li {
+        font-size: x-large;
+    }
+
+    .logo img {
+        max-width: 600px;
+    }
 }

@@ -189,20 +189,56 @@ function handleOverlayClick() {
     });
 }
 
+
+
+// Aumentar o disminuir la cantidad
+$(document).on("click", ".btn-quantity", function() {
+    let idProducto = $(this).data("info");
+    let input = $(`#quantity-${idProducto}`);
+    let currentValue = parseInt(input.val());
+
+    if ($(this).hasClass('increase') && currentValue < 99) {
+        input.val(currentValue + 1);
+    } else if ($(this).hasClass('decrease') && currentValue > 1) {
+        input.val(currentValue - 1);
+    }
+});
+
+
+function mostrarMensaje(texto) {
+    const mensajeDiv = document.getElementById('mensaje');
+    mensajeDiv.textContent = texto;
+    mensajeDiv.style.display = 'block';
+    mensajeDiv.classList.add('visible');
+    setTimeout(() => {
+        mensajeDiv.classList.remove('visible');
+        setTimeout(() => {
+            mensajeDiv.style.display = 'none';
+        }, 500); 
+    }, 5000);
+}
+
+// Función para agregar al carrito y almacenar id:cantidad en localStorage
 function agregarCarrito() {
     $(document).on("click", ".btn-cart", function(e) {
-        e.stopPropagation(); // Detener la propagación del evento  
-        let idOculto = $(this).data("info");
-        let storedIds = JSON.parse(localStorage.getItem('carritoIds')) || []; // Recuperar o inicializar el array de IDs
-        // Si el ID ya existe, removerlo del array
-        if (storedIds.includes(idOculto)) {
-            storedIds = storedIds.filter(id => id !== idOculto);
+        e.stopPropagation();                                                    // Detener la propagación del evento
+        let idProducto = $(this).data("info");                                  // Obtener el ID del producto
+        let cantidad = parseInt($(`#quantity-${idProducto}`).val());            // Obtener la cantidad seleccionada
+        let carrito = JSON.parse(localStorage.getItem('carritoIds')) || {};
+        
+        // Actualizar o agregar el producto con la cantidad seleccionada
+        if (carrito[idProducto]) {
+            mostrarMensaje(`Se actualizo la cantidad del producto ${idProducto} a ${cantidad + carrito[idProducto]}`);
+            carrito[idProducto] += cantidad;
+        } else {
+            mostrarMensaje(`Producto ${idProducto} agregado con cantidad ${cantidad}`);
+            carrito[idProducto] = cantidad;
         }
-        storedIds.push(idOculto);                                                // Agregar el ID al final del array
-        //storedIds.unshift(idOculto);                                           //Agregar el ID al principio del array
-        localStorage.setItem('carritoIds', JSON.stringify(storedIds));    // Guardar el array actualizado en localStorage
+
+        localStorage.setItem('carritoIds', JSON.stringify(carrito));        
     });
 }
+
 
 // Función principal para inicializar la página
 function initPage() {

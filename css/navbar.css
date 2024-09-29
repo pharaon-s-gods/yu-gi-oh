@@ -1,22 +1,141 @@
-.search-filters{
-    width: 100vw;
-    height: auto;
-    padding-left: 10%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+/* Para móviles en orientación vertical - hasta 480px */
+@media (max-width: 480px) {
+    /* Estilos para móviles en orientación vertical */ 
+    .search-filters{
+        width: 100vw;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .filter{
+        margin-top: 10px;
+        width: 40vw;
+        background-color: black;
+        color: whitesmoke;
+    }
+    
+    .filter-text{
+        margin-top: 10px;
+        width: 70vw;
+        background-color: black;
+        color: whitesmoke;
+    }
 }
 
-.filter{
-    margin-top: 10px;
-    width: 40vw;
-    background-color: black;
-    color: whitesmoke;
+
+
+/* Para móviles en orientación horizontal - hasta 768px */ 
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Estilos para móviles en orientación horizontal */
+    .search-filters{
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    
+    .filter, .filter-text{
+        margin-top: 10px;
+        background-color: black;
+        color: whitesmoke;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
 }
 
-.filter-text{
-    margin-top: 10px;
-    width: 70vw;
-    background-color: black;
-    color: whitesmoke;
+
+
+
+
+
+
+
+
+
+
+/* Para tablets en orientación vertical - hasta 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Estilos para tablets en orientación vertical */
+    .search-filters{
+        width: 50vw;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .filter, .filter-text{
+        margin-top: 10px;
+        width: 40vw;
+        background-color: black;
+        color: whitesmoke;
+    }
+
+    .filter, .filter-text ul li{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+
+
+
+
+/* Para tablets en orientación horizontal o escritorios normales - hasta 1200px */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    /* Estilos para tablets en orientación horizontal o escritorios normales */
+    .search-filters{
+        width: 100vw;
+        height: auto;
+        padding-left: 10%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    
+    .filter{
+        margin-top: 10px;
+        width: 40vw;
+        background-color: black;
+        color: whitesmoke;
+    }
+    
+    .filter-text{
+        margin-top: 10px;
+        width: 70vw;
+        background-color: black;
+        color: whitesmoke;
+    }
+}
+
+
+/* Para escritorios grandes - desde 1200px */ 
+@media (min-width: 1201px){
+    .search-filters{
+        padding: 0;
+        width: 100vw;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: start;
+    }
+    
+    .filter, .filter-text{
+        margin-top: 10px;
+        width: 40vw;
+        background-color: black;
+        color: whitesmoke;
+    }
 }

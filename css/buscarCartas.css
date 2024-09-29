@@ -28,7 +28,7 @@ body {
     text-decoration: none;
     border-radius: 50%;                             /* Hace el fondo circular */
     transition: background-color 0.3s ease;         /* Transición suave */
-}
+} 
 
 .activePage{
     background-color: #ff95d5;                    /* Color de fondo en hover */
@@ -150,23 +150,25 @@ body {
     .share-icon img {
         width: 40px;  /* Tamaño del ícono */
     }
-    
+
     .detalle {
+        position: absolute;
         color: white;
         background-color: rgba(0, 0, 0, 0.437);
         width: 90vw;
+        height: auto;
         display: flex;
-        flex-direction: column; /* Para que los detalles se alineen verticalmente */
-        justify-content: center;
+        flex-wrap: wrap;
         align-items: center;
-        border-radius: 0 0 20px 20px;
+        border-radius: 20px;
         border: solid 1px rgba(255, 255, 255, 0.37);
         padding: 10px;
+        font-size: medium;
     }
     
     .tituloDetalle {
-        width: 95%;
-        height: 30px;
+        width: 100%;
+        padding: 6px;
         text-align: center;
         border-bottom: solid 1px rgba(255, 255, 255, 0.37);
         margin-bottom: 10px;
@@ -174,7 +176,46 @@ body {
     
     .descripcionDetalle {
         width: 100%;
-        max-height: 10vh;
+        margin-bottom: 40px;
+    }
+
+    .adicionalDetalle{
+        width: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 30px;
+        text-align: start;
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .precioDetalle{
+        width: 100%;
+        padding: 6px;
+        margin-top: 10px;
+        border-top: solid 1px rgba(255, 255, 255, 0.37);;
+    }
+
+    .precioDetalle h3{
+        width: 100%;
+        text-align: center;
+    }
+
+    .precios{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .precios div{
+        display: flex;
+        margin-top: 5px;
+        min-width: 80px;
+    }
+
+    .precios div span{
+        font-weight: bolder;
+        text-decoration-line: underline;
     }
 }
 
@@ -227,7 +268,470 @@ body {
     
     .contenedorItem {
         width: 33vw;
+        min-width: 190px;
         height: 120vh;
+        max-height: 430px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 1%;
+    }
+
+    .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3%;
+    }
+    
+    .carta {
+        width: 100%;
+        height: 90%;
+        transition: all 0.5s ease;
+        object-fit: contain;
+    }
+
+    .carta:hover {
+        transform: scale(1.025);
+        box-shadow: 0 0 10px 4px rgba(180, 185, 189, 0.3);
+    }
+    
+    .button-container {
+        height: 50px;
+        margin: 10px 0 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .btn-cart {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .btn-cart:hover {
+        background-color: #0056b3;
+        transform: scale(1.05); 
+    }
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        backdrop-filter: blur(10px); /* Difumina el fondo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2%;
+    }
+    
+    .elemento {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+    }
+    
+    .imgOverlay{
+        height: 90vh;
+    }
+
+    .share-icon {
+        width: 40px;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+    }
+    
+    .share-icon img {
+        width: 40px;  /* Tamaño del ícono */
+    }
+    
+    .detalle {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.437);
+        width: 70vw;
+        height: 90vh;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        border-radius: 0 20px 20px 0;
+        border: solid 1px rgba(255, 255, 255, 0.37);
+        padding: 10px;
+        font-size: medium;
+    }
+    
+    .tituloDetalle {
+        width: 100%;
+        padding: 6px;
+        text-align: center;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.37);
+        margin-bottom: 10px;
+    }
+    
+    .descripcionDetalle {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .adicionalDetalle{
+        width: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 30px;
+        text-align: start;
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .precioDetalle{
+        width: 100%;
+        padding: 6px;
+        margin-top: 10px;
+        border-top: solid 1px rgba(255, 255, 255, 0.37);;
+    }
+
+    .precioDetalle h3{
+        width: 100%;
+        text-align: center;
+    }
+
+    .precios{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .precios div{
+        display: flex;
+        margin-top: 5px;
+        min-width: 80px;
+    }
+
+    .precios div span{
+        font-weight: bolder;
+        text-decoration-line: underline;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Para tablets en orientación vertical - hasta 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Estilos para tablets en orientación vertical */
+    .sinCartas{
+        color: whitesmoke;
+        width: 100vw;
+        height: 40vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .main {
+        align-items: center;
+        padding: 30px 0 20px;
+        display: flex;
+        flex-direction: row; /* Asegura que los elementos se apilen verticalmente */
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    
+    .texto {
+        width: 90vw;
+        margin-bottom: 15px;
+    }
+    
+    .contenedorItem {
+        width: 33vw;
+        height: 80vh;
+        max-height: 430px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 1%;
+    }
+
+    .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3%;
+    }
+    
+    .carta {
+        width: 100%;
+        height: 90%;
+        transition: all 0.5s ease;
+        object-fit: contain;
+    }
+
+    .carta:hover {
+        transform: scale(1.025);
+        box-shadow: 0 0 10px 4px rgba(180, 185, 189, 0.3);
+    }
+    
+    .button-container {
+        height: 50px;
+        margin: 0 0 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .btn-cart {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .btn-cart:hover {
+        background-color: #0056b3;
+        transform: scale(1.05); 
+    }
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        backdrop-filter: blur(10px); /* Difumina el fondo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2%;
+    }
+    
+    .elemento {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+    }
+    
+    .imgOverlay{
+        height: 90vh;
+    }
+
+    .share-icon {
+        width: 40px;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+    }
+    
+    .share-icon img {
+        width: 40px;  /* Tamaño del ícono */
+    }
+    
+    .detalle {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.437);
+        width: 70vw;
+        height: 90vh;
+        display: flex;
+        flex-direction: column; /* Para que los detalles se alineen verticalmente */
+        align-items: center;
+        border-radius: 0 20px 20px 0;
+        border: solid 1px rgba(255, 255, 255, 0.37);
+        padding: 10px;
+        font-size: large;
+    }
+    
+    .tituloDetalle {
+        width: 100%;
+        padding: 6px;
+        text-align: center;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.37);
+        margin-bottom: 10px;
+    }
+    
+    .descripcionDetalle {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .adicionalDetalle{
+        width: 100%;
+        height: 30px;
+        text-align: start;
+        display: flex;
+        margin-bottom: 10px;
+        gap: 4px;
+    }
+
+    .precioDetalle{
+        width: 100%;
+        padding: 6px;
+        margin-top: 10px;
+        border-top: solid 1px rgba(255, 255, 255, 0.37);;
+    }
+
+    .precioDetalle h3{
+        width: 100%;
+        text-align: center;
+    }
+
+    .precios{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .precios div{
+        display: flex;
+        margin-top: 5px;
+    }
+
+    .precios div span{
+        font-weight: bolder;
+        text-decoration-line: underline;
+    }
+
+    .pagination {
+        width: 90vw;
+        grid-column: 1/6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 5vw;
+    }
+
+    .paginationElement {
+        color: #f90c9a;
+        font-size: x-large;
+        justify-content: center;
+        padding: 0 8px 0 8px;
+        text-decoration: none;
+        border-radius: 50%;                             /* Hace el fondo circular */
+        transition: background-color 0.3s ease;         /* Transición suave */
+    }
+    
+    .activePage{
+        background-color: #ff95d5;                    /* Color de fondo en hover */
+        color: #f90c9a;
+    }
+    
+    .paginationElement:hover {
+        background-color: #f867be;                    /* Color de fondo en hover */
+        color: white;                                 /* Cambia el color del texto en hover */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Para tablets en orientación horizontal o escritorios normales - hasta 1200px */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    /* Estilos para tablets en orientación horizontal o escritorios normales */
+    .sinCartas{
+        color: whitesmoke;
+        width: 100vw;
+        height: 40vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .main {
+        align-items: center;
+        padding: 30px 0 20px;
+        display: flex;
+        flex-direction: row; /* Asegura que los elementos se apilen verticalmente */
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    
+    .texto {
+        width: 90vw;
+        margin-bottom: 15px;
+    }
+    
+    .contenedorItem {
+        width: 33vw;
+        height: 80vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -324,11 +828,12 @@ body {
         border-radius: 0 20px 20px 0;
         border: solid 1px rgba(255, 255, 255, 0.37);
         padding: 10px;
+        font-size: x-large;
     }
     
     .tituloDetalle {
         width: 100%;
-        height: 30px;
+        padding: 6px;
         text-align: center;
         border-bottom: solid 1px rgba(255, 255, 255, 0.37);
         margin-bottom: 10px;
@@ -336,50 +841,290 @@ body {
     
     .descripcionDetalle {
         width: 100%;
+        margin-bottom: 40px;
     }
-    
-}
 
+    .adicionalDetalle{
+        width: 100%;
+        height: 30px;
+        text-align: start;
+        display: flex;
+        margin-bottom: 10px;
+        gap: 4px;
+    }
 
+    .precioDetalle{
+        width: 100%;
+        padding: 6px;
+        margin-top: 10px;
+        border-top: solid 1px rgba(255, 255, 255, 0.37);;
+    }
 
+    .precioDetalle h3{
+        width: 100%;
+        text-align: center;
+    }
 
+    .precios{
+        display: flex;
+        flex-direction: column;
+    }
 
+    .precios div{
+        display: flex;
+        margin-top: 5px;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Para tablets en orientación vertical - hasta 1024px */
-@media (min-width: 769px) and (max-width: 1024px) {
-    /* Estilos para tablets en orientación vertical */
-}
-
-/* Para tablets en orientación horizontal o escritorios normales - hasta 1200px */
-@media (min-width: 1025px) and (max-width: 1200px) {
-    /* Estilos para tablets en orientación horizontal o escritorios normales */
-
+    .precios div span{
+        font-weight: bolder;
+        text-decoration-line: underline;
+    }
 }
 
 /* Para escritorios grandes - desde 1200px */
 @media (min-width: 1201px){
+    .sinCartas{
+        color: whitesmoke;
+        width: 100vw;
+        height: 40vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .main {
+        width: 90vw;
+        display: grid;
+        margin: 0 auto;
+        grid-template-columns: 20% 20% 20% 20% 20%; /* Crea 5 columnas con anchos iguales */
+        padding: 30px 0 20px;
+        justify-items: center; /* Alinea los items en el centro horizontalmente */
+    }
+    
+    .texto {
+        width: 90vw;
+        margin-bottom: 15px;
+    }
+    
+    .contenedorItem {
+        padding: 1%;
+    }
+    
+    .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3%;
+    }
+    
+    .carta {
+        width: 100%;
+        height: 90%;
+        transition: all 0.5s ease;
+        object-fit: contain;
+    }    
+
+    .carta:hover {
+        transform: scale(1.025);
+        box-shadow: 0 0 10px 4px rgba(180, 185, 189, 0.3);
+    }
+    
+
+
+    .quantity-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .btn-quantity{
+        width: 20px;
+        font-size: medium;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .quantity-input{
+        width: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .button-container {
+        height: 50px;
+        margin: 10px 0 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .btn-cart {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .btn-cart:hover {
+        background-color: #0056b3;
+        transform: scale(1.05); 
+    }
+    
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        backdrop-filter: blur(10px); /* Difumina el fondo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2%;
+    }
+    
+    .elemento {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+    }
+    
+    .imgOverlay{
+        height: 90vh;
+    }
+
+    .share-icon {
+        width: 40px;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+    }
+    
+    .share-icon img {
+        width: 40px;  /* Tamaño del ícono */
+    }
+    
+    .detalle {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.437);
+        width: 70vw;
+        height: 90vh;
+        display: flex;
+        flex-direction: column; /* Para que los detalles se alineen verticalmente */
+        align-items: center;
+        border-radius: 0 20px 20px 0;
+        border: solid 1px rgba(255, 255, 255, 0.37);
+        padding: 10px;
+        font-size: large;
+    }
+    
+    .tituloDetalle {
+        width: 100%;
+        padding: 6px;
+        text-align: center;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.37);
+        margin-bottom: 10px;
+    }
+    
+    .descripcionDetalle {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .adicionalDetalle{
+        width: 100%;
+        height: 30px;
+        text-align: start;
+        display: flex;
+        margin-bottom: 10px;
+        gap: 4px;
+    }
+
+    .precioDetalle{
+        width: 100%;
+        padding: 6px;
+        margin-top: 10px;
+        border-top: solid 1px rgba(255, 255, 255, 0.37);;
+    }
+
+    .precioDetalle h3{
+        width: 100%;
+        text-align: center;
+    }
+
+    .precios{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .precios div{
+        display: flex;
+        margin-top: 5px;
+    }
+
+    .precios div span{
+        font-weight: bolder;
+        text-decoration-line: underline;
+    }
+
+    .pagination {
+        width: 90vw;
+        grid-column: 1/6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 5vw;
+    }
+
+    .paginationElement {
+        color: #f90c9a;
+        font-size: x-large;
+        justify-content: center;
+        padding: 0 8px 0 8px;
+        text-decoration: none;
+        border-radius: 50%;                             /* Hace el fondo circular */
+        transition: background-color 0.3s ease;         /* Transición suave */
+    }
+    
+    .activePage{
+        background-color: #ff95d5;                    /* Color de fondo en hover */
+        color: #f90c9a;
+    }
+    
+    .paginationElement:hover {
+        background-color: #f867be;                    /* Color de fondo en hover */
+        color: white;                                 /* Cambia el color del texto en hover */
+    }
+
+    .mensaje-carrito {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        z-index: 1000;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    
+    .mensaje-carrito.visible {
+        opacity: 1;
+    }
 
 }
 
