@@ -33,7 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Muestra los productos en el carrito
     async function mostrarProductos() {
-        carritoContainer.innerHTML = ""; 
+        // Guarda el scroll para restaurarlo despues
+        const scrollPosition = window.scrollY; 
+
+        // Limpia el contenedor del carrito
+        while (carritoContainer.firstChild) {
+            carritoContainer.removeChild(carritoContainer.firstChild);
+        }
+
         const inicio = (paginaActual - 1) * resultadosPorPagina;
         const fin = inicio + resultadosPorPagina;
         const idsPaginados = Object.keys(idsEnCarrito).slice(inicio, fin); 
@@ -42,36 +49,34 @@ document.addEventListener("DOMContentLoaded", () => {
         const cartas = await Promise.all(cartasPromises); 
 
         cartas.forEach(carta => {
-            if (carta) {
-                const cantidad = idsEnCarrito[carta.id]; 
-                const div = document.createElement("div");
-                div.classList.add("producto");
-                div.setAttribute("data-id", carta.id); 
-                div.innerHTML = `
-                    <div class="producto-imagen-titulo">
-                        <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
-                        <h2>${carta.name}</h2>
-                        <p>Tipo: ${carta.type}</p>
-                        <p>Raza: ${carta.race}</p>
-                    </div>
-                    <div class="producto-cantidad-botones">
-                        <p class="cantidad">Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
-                        <button class="btn-mas" data-id="${carta.id}">+</button>
-                        <button class="btn-menos" data-id="${carta.id}">-</button>
-                        <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
-                    </div>
-                `;
+            const div = document.createElement("div");
+            div.classList.add("producto");
+            div.setAttribute("data-id", carta.id); 
+            div.innerHTML = carta ? `
+                <div class="producto-imagen-titulo">
+                    <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
+                    <h2>${carta.name}</h2>
+                    <p>Tipo: ${carta.type}</p>
+                    <p>Raza: ${carta.race}</p>
+                </div>
+                <div class="producto-cantidad-botones">
+                    <p class="cantidad">Cantidad: <span id="cantidad-${carta.id}">${idsEnCarrito[carta.id]}</span></p>
+                    <button class="btn-mas" data-id="${carta.id}">+</button>
+                    <button class="btn-menos" data-id="${carta.id}">-</button>
+                    <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
+                </div>
+            ` : `
+                <div>Error al cargar la carta</div>
+            `;
 
-                carritoContainer.appendChild(div); 
-            } else {
-                const div = document.createElement("div");
-                div.textContent = "Error al cargar la carta"; 
-                carritoContainer.appendChild(div);
-            }
+            carritoContainer.appendChild(div); 
         });
 
         actualizarBotones(); 
         agregarEventos(); 
+
+        // Restaura la posicion del scroll
+        window.scrollTo(0, scrollPosition);
     }
 
     // Actualiza una carta en el carrito
@@ -81,21 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const div = carritoContainer.querySelector(`.producto[data-id="${id}"]`); 
 
         if (carta && div) {
-            div.innerHTML = `
-            <div class="producto-imagen-titulo">
-                <img src="${carta.card_images[0].image_url}" alt="${carta.name}" />
-                <h2 title="${carta.name}">${carta.name}</h2> 
-                <p>Tipo: ${carta.type}</p>
-                <p>Raza: ${carta.race}</p>
-            </div>
-            <div class="producto-cantidad-botones">
-                <p class="cantidad">Cantidad: <span id="cantidad-${carta.id}">${cantidad}</span></p>
-                <button class="btn-mas" data-id="${carta.id}">+</button>
-                <button class="btn-menos" data-id="${carta.id}">-</button>
-                <button class="btn-eliminar" data-id="${carta.id}">Eliminar todo</button>
-            </div>
-        `;
-            agregarEventos(); 
+            const cantidadElemento = div.querySelector(`span#cantidad-${carta.id}`);
+            if (cantidadElemento) {
+                cantidadElemento.textContent = cantidad;
+            }
         }
     }
 
@@ -120,6 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.preventDefault();
                 const id = e.target.dataset.id;
 
+                // Guarda la posicion del scroll
+                const scrollPosition = window.scrollY;
+
                 if (idsEnCarrito[id] > 1) {
                     idsEnCarrito[id] -= 1; 
                 } else {
@@ -128,6 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
                 await mostrarProductos(); 
+
+                // Restaura la posición del scroll
+                window.scrollTo(0, scrollPosition);
             });
         });
 
