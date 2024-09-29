@@ -13,18 +13,18 @@ export async function clickCartaMobil(elemento)
                         <h3>${elemento.name}</h3>
                     </div>
                     <div class="descripcionDetalle">
-                        <p>t${elemento.desc}</p>
+                        <p>${elemento.desc}</p>
                     </div>
                     <div class="adicionalDetalle">
-                        <span>Tipo: </span>
+                        <span>Tipo:&nbsp</span>
                         <h3>${elemento.type}</h3>
                     </div>
                     <div class="adicionalDetalle">
-                        <span>Raza: </span>    
+                        <span>Raza:&nbsp</span>    
                         <h3>${elemento.race}</h3>
                     </div>
                     <div class="adicionalDetalle">
-                        <span>Arquetipo: </span>
+                        <span>Arquetipo:&nbsp</span>
                         <h3>${elemento.archetype}</h3>
                     </div>
                     <div class="precioDetalle">

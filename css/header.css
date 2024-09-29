@@ -60,6 +60,12 @@
         width: 70vw;
     }
 
+    .enlacesHeader{
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     .enlacesHeader ul {
         width: 100%;
         flex-direction: column;
@@ -91,9 +97,6 @@
 /* Para tablets en orientación horizontal o escritorios normales - hasta 1200px */
 @media (min-width: 1025px) and (max-width: 1200px) {
     /* Estilos para tablets en orientación horizontal o escritorios normales */
-    .enlacesHeader ul li {
-        font-size: large;
-    }
 }
 
 /* Para escritorios grandes - desde 1200px */ 
