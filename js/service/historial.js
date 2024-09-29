@@ -1,4 +1,3 @@
-// Importa funciones para cargar el footer y header
 import { footer } from "../mapeos/footer.js";
 import { header } from "../mapeos/header.js";
 
@@ -8,11 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevButton = document.getElementById("prev-page");
     const nextButton = document.getElementById("next-page");
 
-    const ITEMS_PER_PAGE = 10; // Cartas por pagina
+    const ITEMS_PER_PAGE = 10;
     let currentPage = 1; // Pagina actual
     let cartasHistorial = JSON.parse(localStorage.getItem("cartasVisualizadasId")) || []; // Obtiene historial
 
-    // Funcion asincrona para obtener carta por id
+    // Mensaje para mostrar si no hay cartas
+    const noCartasMessage = document.createElement("div");
+    noCartasMessage.className = "no-cartas-message";
+    noCartasMessage.textContent = "No hay cartas en el historial.";
+    noCartasMessage.style.display = "none"; // Ocultar inicialmente
+    cartasHistorialContainer.appendChild(noCartasMessage); // Agrega el mensaje al contenedor
+
     async function obtenerCartaPorId(id) {
         try {
             const respuesta = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?id=${id}`);
@@ -25,13 +30,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Funcion para renderizar cartas en el contenedor
     async function renderCartas() {
         cartasHistorialContainer.innerHTML = ""; // Limpia el contenedor
+        cartasHistorialContainer.appendChild(noCartasMessage);
 
-        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE; // Calcula el indice inicial
-        const endIndex = startIndex + ITEMS_PER_PAGE; // Calcula el indice final
-        const cartasToShow = cartasHistorial.slice(startIndex, endIndex); // Selecciona cartas a mostrar
+        if (cartasHistorial.length === 0) {
+            noCartasMessage.style.display = "block"; // Ocultar botones
+            prevButton.style.display = "none";
+            nextButton.style.display = "none";
+            pageInfo.style.display = "none";
+            return;
+        }
+
+        noCartasMessage.style.display = "none"; // Oculta el mensaje si hay cartas
+
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const cartasToShow = cartasHistorial.slice(startIndex, endIndex);
 
         const cartasPromises = cartasToShow.map(cartaId => obtenerCartaPorId(cartaId)); // Obtiene cartas por id
         const cartas = await Promise.all(cartasPromises); // Espera a que todas las promesas se resuelvan
@@ -39,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cartas.forEach(carta => {
             if (carta) { // Verifica si la carta existe
                 const cartaElement = document.createElement("div"); // Crea un nuevo elemento para la carta
-                cartaElement.className = "carta"; // Asigna clase
+                cartaElement.className = "carta";
                 cartaElement.innerHTML = `
                     <img src="${carta.card_images[0].image_url}" alt="${carta.name}">
                     <h2>${carta.name}</h2>
@@ -50,13 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Actualiza la informacion de la pagina
-        pageInfo.textContent = `Pagina ${currentPage} de ${Math.ceil(cartasHistorial.length / ITEMS_PER_PAGE)}`;
-        prevButton.disabled = currentPage === 1; // Deshabilita boton de anterior si esta en la primera pagina
+        pageInfo.textContent = `Página ${currentPage} de ${Math.ceil(cartasHistorial.length / ITEMS_PER_PAGE)}`;
+        prevButton.disabled = currentPage === 1; // Deshabilita boton de anterior si está en la primera pagina
         nextButton.disabled = currentPage === Math.ceil(cartasHistorial.length / ITEMS_PER_PAGE); // Deshabilita boton de siguiente si esta en la ultima pagina
     }
 
-    // Carga el header y footer
     async function loadPage() {
         await header().then(html => {
             $('header').append(html);
@@ -66,9 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Botones de navegacion
     prevButton.addEventListener("click", () => {
-        if (currentPage > 1) { // Verifica si no esta en la primera pagina
+        if (currentPage > 1) { // Verifica si no esta en la primera página
             currentPage--; // Resta uno a la pagina actual
             renderCartas(); // Renderiza las cartas
         }
