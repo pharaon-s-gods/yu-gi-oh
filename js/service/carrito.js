@@ -31,23 +31,42 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Muestra los productos en el carrito
     async function mostrarProductos() {
         // Guarda el scroll para restaurarlo despues
         const scrollPosition = window.scrollY; 
-
+    
         // Limpia el contenedor del carrito
         while (carritoContainer.firstChild) {
             carritoContainer.removeChild(carritoContainer.firstChild);
         }
-
+    
+        const totalCartas = Object.keys(idsEnCarrito).length;
+    
+        // Si el carrito esta vacio
+        if (totalCartas === 0) {
+            const mensajeVacío = document.createElement("div");
+            mensajeVacío.textContent = "No hay cartas en el carrito.";
+            mensajeVacío.classList.add("mensaje-vacio");
+            carritoContainer.appendChild(mensajeVacío);
+    
+            // Oculta los botones de paginacion y el numero de página
+            pageInfo.style.display = "none";
+            prevButton.style.display = "none";
+            nextButton.style.display = "none";
+            return;
+        } else {
+            pageInfo.style.display = "block";
+            prevButton.style.display = "inline-block";
+            nextButton.style.display = "inline-block";
+        }
+    
         const inicio = (paginaActual - 1) * resultadosPorPagina;
         const fin = inicio + resultadosPorPagina;
         const idsPaginados = Object.keys(idsEnCarrito).slice(inicio, fin); 
-
+    
         const cartasPromises = idsPaginados.map(id => obtenerCartaPorId(id)); 
         const cartas = await Promise.all(cartasPromises); 
-
+    
         cartas.forEach(carta => {
             const div = document.createElement("div");
             div.classList.add("producto");
@@ -68,16 +87,16 @@ document.addEventListener("DOMContentLoaded", () => {
             ` : `
                 <div>Error al cargar la carta</div>
             `;
-
+    
             carritoContainer.appendChild(div); 
         });
-
+    
         actualizarBotones(); 
         agregarEventos(); 
-
+    
         // Restaura la posicion del scroll
         window.scrollTo(0, scrollPosition);
-    }
+    }    
 
     // Actualiza el innerHTML de la cantidad en el DOM
     async function actualizarCantidadEnDOM(id) {
@@ -167,7 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Inicializa la vista de productos
     mostrarProductos();
 
     // Carga el header y footer
