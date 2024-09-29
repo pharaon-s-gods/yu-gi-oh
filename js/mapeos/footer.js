@@ -33,7 +33,7 @@ export async function footer() {
 
         <!-- Banner publicitario (solo en escritorio) -->
         <div class="banner-container">
-            <img src="../img/banner.jpg" alt="Publicidad Yu-Gi-Oh! Store">
+            <img src="../img/banner2.jpg" alt="Publicidad Yu-Gi-Oh! Store">
         </div>
     `;
 }
