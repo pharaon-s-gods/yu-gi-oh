@@ -106,10 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btnMenos.forEach(btn => {
             btn.addEventListener("click", async (e) => {
                 e.preventDefault();
-                const id = e.target.dataset.id;
-        
-                // Guarda la posicion del scroll
-                const scrollPosition = window.scrollY;
+                const id = e.target.dataset.id;        
         
                 if (idsEnCarrito[id] > 1) {
                     idsEnCarrito[id] -= 1; 
@@ -120,19 +117,30 @@ document.addEventListener("DOMContentLoaded", () => {
                     localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
                     await mostrarProductos(); 
                 }
-        
-                // Restaura la posicion del scroll
-                window.scrollTo(0, scrollPosition);
             });
         });        
 
         btnEliminar.forEach(btn => {
-            btn.addEventListener("click", async (e) => {
+            btn.addEventListener("click", (e) => {
                 e.preventDefault();
                 const id = e.target.dataset.id;
-                delete idsEnCarrito[id]; 
+        
+                delete idsEnCarrito[id];
                 localStorage.setItem("carritoIds", JSON.stringify(idsEnCarrito));
-                await mostrarProductos(); 
+        
+                const cartaElemento = document.querySelector(`div[data-id="${id}"]`);
+                if (cartaElemento) {
+                    cartaElemento.remove();
+                }
+        
+                const totalProductosRestantes = Object.keys(idsEnCarrito).length;
+                const totalPaginas = Math.ceil(totalProductosRestantes / resultadosPorPagina);
+        
+                if (paginaActual > totalPaginas) {
+                    paginaActual = totalPaginas;
+                }
+        
+                mostrarProductos();
             });
         });
     }
