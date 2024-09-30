@@ -164,11 +164,11 @@ body {
 
 .descripcionDetalle {
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .adicionalDetalle{
-    width: 100%;
+    width: auto;
     padding-left: 10px;
     padding-right: 10px;
     height: auto;
@@ -314,7 +314,7 @@ body {
     }
     
     .detalle{
-        font-size: medium;
+        font-size: small;
     }
     
     .adicionalDetalle{
@@ -346,6 +346,10 @@ body {
     
     .contenedorItem{
         max-width: 30vw;
+    }
+
+    .detalle{
+        font-size: medium;
     }
     
     
@@ -394,7 +398,8 @@ body {
     }
     
     .detalle {
-        font-size: x-large;
+        font-size: large;
+        flex-direction: column;
     }
 
     .adicionalDetalle{
@@ -419,6 +424,10 @@ body {
     .contenedorItem{
         width: 100%;
         height: auto;
+    }
+
+    .detalle {
+        font-size: large;
     }
 
     .pagination {
